@@ -122,9 +122,10 @@
       border-bottom:1px solid var(--border);
     }
     .s-logo-img-wrap {
-      background:#fff; border-radius:7px; padding:2px 6px;
+      background:rgba(255,255,255,0.15); border-radius:7px; padding:3px 8px;
       display:flex; align-items:center; flex-shrink:0;
     }
+    [data-theme="light"] .s-logo-img-wrap { background:transparent; padding:2px 4px; }
     .s-logo-img-wrap img { height:30px; width:auto; display:block; }
     .s-logo-txt .brand { font-size:15px; font-weight:800; color:var(--txt); display:block; }
     .s-logo-txt .sub   { font-size:9px; font-weight:600; color:#e05f1c; letter-spacing:1.3px; text-transform:uppercase; }
@@ -539,7 +540,7 @@
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <div class="s-logo-img-wrap">
-      <img src="LOGO.jpeg" alt="DSR Groups" />
+      <img src="LOGO.png" alt="DSR Groups" />
     </div>
     <div class="s-logo-txt">
       <span class="brand">DSR Admin</span>
@@ -633,7 +634,7 @@
 
     <div class="tb-search">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search bookings, drivers, clients…" />
+      <input type="text" placeholder="Search bookings, drivers, clients, routes…" />
     </div>
 
     <button class="tb-btn" title="Notifications">
@@ -808,54 +809,54 @@
             <tbody>
               <tr>
                 <td class="td-mono">#BK-20810</td>
-                <td><div class="td-bold">Infosys BPM</div><div style="font-size:11px;color:var(--muted)">Priya S. (Morning shift)</div></td>
-                <td>Gachibowli → Uppal</td>
-                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-car"></i></div>TS09EF4521</div></td>
+                <td><div class="td-bold">Manufacturing Co.</div><div style="font-size:11px;color:var(--muted)">Morning shift — 45 emp.</div></td>
+                <td>Krishnagiri → SIDCO Estate</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TN29AB4521</div></td>
                 <td>Ramesh K.</td>
                 <td><span class="status-pill sp-active">In Progress</span></td>
                 <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
               </tr>
               <tr>
                 <td class="td-mono">#BK-20809</td>
-                <td><div class="td-bold">Deloitte HYD</div><div style="font-size:11px;color:var(--muted)">Arjun M. (Airport pickup)</div></td>
-                <td>RGIA → Banjara Hills</td>
-                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-car-side"></i></div>TS10KL7744</div></td>
+                <td><div class="td-bold">IT Client, Hosur</div><div style="font-size:11px;color:var(--muted)">Airport pickup (Premier)</div></td>
+                <td>Chennai Airport → Hosur</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-car-side"></i></div>TN33KL7744</div></td>
                 <td>Venkat R.</td>
                 <td><span class="status-pill sp-transit">On the Way</span></td>
                 <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
               </tr>
               <tr>
                 <td class="td-mono">#BK-20808</td>
-                <td><div class="td-bold">WNS Global</div><div style="font-size:11px;color:var(--muted)">Night shift batch — 24 emp.</div></td>
-                <td>Madhapur → Dilsukhnagar</td>
-                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TS07MN1102</div></td>
+                <td><div class="td-bold">Factory, Krishnagiri</div><div style="font-size:11px;color:var(--muted)">Night shift batch — 30 emp.</div></td>
+                <td>Krishnagiri Town → SIDCO</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TN29MN1102</div></td>
                 <td>Suresh P.</td>
                 <td><span class="status-pill sp-done">Completed</span></td>
                 <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
               </tr>
               <tr>
                 <td class="td-mono">#BK-20807</td>
-                <td><div class="td-bold">Tech Mahindra</div><div style="font-size:11px;color:var(--muted)">Ananya R. (CXO transfer)</div></td>
-                <td>Jubilee Hills → RGIA</td>
-                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-star"></i></div>TS08UV3310</div></td>
+                <td><div class="td-bold">Corporate Client</div><div style="font-size:11px;color:var(--muted)">MD transfer — Premier cab</div></td>
+                <td>Krishnagiri → Bangalore</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-star"></i></div>TN29UV3310</div></td>
                 <td>Kiran M.</td>
                 <td><span class="status-pill sp-pending">Scheduled</span></td>
                 <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
               </tr>
               <tr>
                 <td class="td-mono">#BK-20806</td>
-                <td><div class="td-bold">Accenture HYD</div><div style="font-size:11px;color:var(--muted)">Morning shift — 18 emp.</div></td>
-                <td>Kondapur → HITEC City</td>
-                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-van-shuttle"></i></div>TS12AB9933</div></td>
+                <td><div class="td-bold">MFG Plant, Hosur</div><div style="font-size:11px;color:var(--muted)">Morning shift — 22 emp.</div></td>
+                <td>Hosur Town → Factory</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-van-shuttle"></i></div>TN33AB9933</div></td>
                 <td>Naresh B.</td>
                 <td><span class="status-pill sp-done">Completed</span></td>
                 <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
               </tr>
               <tr>
                 <td class="td-mono">#BK-20805</td>
-                <td><div class="td-bold">Wipro BPO</div><div style="font-size:11px;color:var(--muted)">Event — Annual Day</div></td>
-                <td>Multiple zones → HICC</td>
-                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TS05GH6622</div></td>
+                <td><div class="td-bold">Chennai Client</div><div style="font-size:11px;color:var(--muted)">Event — Annual Day</div></td>
+                <td>Multiple zones → Chennai</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TN01GH6622</div></td>
                 <td>Anil V.</td>
                 <td><span class="status-pill sp-cancel">Cancelled</span></td>
                 <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
@@ -984,32 +985,32 @@
         </div>
         <div class="route-perf-list">
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">Gachibowli ↔ HITEC City</span><span class="rp-pct">92%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:92%"></div></div>
+            <div class="rp-top"><span class="rp-name">Krishnagiri → SIDCO Estate</span><span class="rp-pct">94%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:94%"></div></div>
           </div>
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">Kondapur ↔ Madhapur</span><span class="rp-pct">78%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:78%"></div></div>
+            <div class="rp-top"><span class="rp-name">Hosur ↔ Bangalore</span><span class="rp-pct">81%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:81%"></div></div>
           </div>
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">RGIA Airport Transfers</span><span class="rp-pct">65%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:65%"></div></div>
+            <div class="rp-top"><span class="rp-name">Chennai → Mannivakkam</span><span class="rp-pct">72%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:72%"></div></div>
           </div>
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">Secunderabad ↔ Uppal</span><span class="rp-pct">54%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:54%"></div></div>
+            <div class="rp-top"><span class="rp-name">Chennai Airport Transfers</span><span class="rp-pct">63%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:63%"></div></div>
           </div>
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">Dilsukhnagar ↔ LB Nagar</span><span class="rp-pct">41%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:41%"></div></div>
+            <div class="rp-top"><span class="rp-name">Hosur ↔ Krishnagiri</span><span class="rp-pct">48%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:48%"></div></div>
           </div>
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">Banjara Hills ↔ Jubilee Hills</span><span class="rp-pct">29%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:29%"></div></div>
+            <div class="rp-top"><span class="rp-name">Chennai ↔ Vellore</span><span class="rp-pct">34%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:34%"></div></div>
           </div>
           <div class="rp-item">
-            <div class="rp-top"><span class="rp-name">HYD → Vijayawada (Outstation)</span><span class="rp-pct">18%</span></div>
-            <div class="rp-bar"><div class="rp-fill" style="width:18%"></div></div>
+            <div class="rp-top"><span class="rp-name">KGI → Bangalore (Outstation)</span><span class="rp-pct">21%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:21%"></div></div>
           </div>
         </div>
       </div>
@@ -1024,7 +1025,7 @@
           <div class="alert-item">
             <div class="alert-ico" style="background:var(--red-l);color:var(--red)"><i class="fas fa-exclamation-triangle"></i></div>
             <div class="alert-txt">
-              <span class="at">Vehicle TS09EF4521 — Maintenance Due</span>
+              <span class="at">Vehicle TN29AB4521 — Maintenance Due</span>
               <span class="as">Engine service overdue by 2 days</span>
             </div>
             <span class="alert-time">2m ago</span>
@@ -1040,24 +1041,24 @@
           <div class="alert-item">
             <div class="alert-ico" style="background:var(--blue-l);color:var(--blue)"><i class="fas fa-building"></i></div>
             <div class="alert-txt">
-              <span class="at">New Corporate Enquiry — Capgemini</span>
-              <span class="as">150 employees, daily transport required</span>
+              <span class="at">New Corporate Enquiry — Factory, Krishnagiri</span>
+              <span class="as">200 employees, daily shift transport required</span>
             </div>
             <span class="alert-time">3h ago</span>
           </div>
           <div class="alert-item">
             <div class="alert-ico" style="background:var(--green-l);color:var(--green)"><i class="fas fa-file-invoice-dollar"></i></div>
             <div class="alert-txt">
-              <span class="at">Invoice #INV-2459 Paid — Infosys BPM</span>
-              <span class="as">₹3,82,500 received for May 2026</span>
+              <span class="at">Invoice #INV-2459 Paid — Manufacturing Plant A</span>
+              <span class="as">Payment received for May 2026</span>
             </div>
             <span class="alert-time">5h ago</span>
           </div>
           <div class="alert-item">
             <div class="alert-ico" style="background:var(--purple-l);color:var(--purple)"><i class="fas fa-star"></i></div>
             <div class="alert-txt">
-              <span class="at">New 5★ Review — WNS Global</span>
-              <span class="as">"Best corporate transport partner in Hyderabad"</span>
+              <span class="at">New 5★ Review — Auto Components Ltd.</span>
+              <span class="as">"Best transport partner in Tamil Nadu"</span>
             </div>
             <span class="alert-time">8h ago</span>
           </div>
@@ -1093,50 +1094,50 @@
           </thead>
           <tbody>
             <tr>
-              <td><div class="td-bold">Infosys BPM</div><div style="font-size:11px;color:var(--muted)">HITEC City, HYD</div></td>
-              <td>IT / BPO</td>
-              <td>412</td>
-              <td>18</td>
+              <td><div class="td-bold">Manufacturing Plant A</div><div style="font-size:11px;color:var(--muted)">SIDCO Estate, Krishnagiri</div></td>
+              <td>Manufacturing</td>
+              <td>480</td>
+              <td>20</td>
               <td style="font-weight:700;color:var(--green)">₹3,82,500</td>
               <td>Mar 2027</td>
               <td><span class="status-pill sp-active">Active</span></td>
               <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
             </tr>
             <tr>
-              <td><div class="td-bold">WNS Global Services</div><div style="font-size:11px;color:var(--muted)">Madhapur, HYD</div></td>
-              <td>BPO</td>
-              <td>634</td>
-              <td>24</td>
+              <td><div class="td-bold">Auto Components Ltd.</div><div style="font-size:11px;color:var(--muted)">Hosur Industrial Area</div></td>
+              <td>Auto / Manufacturing</td>
+              <td>620</td>
+              <td>22</td>
               <td style="font-weight:700;color:var(--green)">₹5,14,000</td>
               <td>Dec 2026</td>
               <td><span class="status-pill sp-active">Active</span></td>
               <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
             </tr>
             <tr>
-              <td><div class="td-bold">Deloitte India</div><div style="font-size:11px;color:var(--muted)">Gachibowli, HYD</div></td>
-              <td>Consulting</td>
-              <td>89</td>
-              <td>6</td>
+              <td><div class="td-bold">IT Solutions Pvt. Ltd.</div><div style="font-size:11px;color:var(--muted)">Mannivakkam, Chennai</div></td>
+              <td>IT / BPO</td>
+              <td>95</td>
+              <td>7</td>
               <td style="font-weight:700;color:var(--green)">₹1,24,000</td>
               <td>Jun 2027</td>
               <td><span class="status-pill sp-active">Active</span></td>
               <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
             </tr>
             <tr>
-              <td><div class="td-bold">Tech Mahindra</div><div style="font-size:11px;color:var(--muted)">Kondapur, HYD</div></td>
-              <td>IT Services</td>
-              <td>276</td>
-              <td>12</td>
+              <td><div class="td-bold">Pharma Factory</div><div style="font-size:11px;color:var(--muted)">Krishnagiri, Tamil Nadu</div></td>
+              <td>Pharmaceuticals</td>
+              <td>310</td>
+              <td>13</td>
               <td style="font-weight:700;color:var(--green)">₹2,28,000</td>
               <td>Sep 2026</td>
               <td><span class="status-pill sp-pending">Renewal Due</span></td>
               <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
             </tr>
             <tr>
-              <td><div class="td-bold">Accenture HYD</div><div style="font-size:11px;color:var(--muted)">Nanakramguda, HYD</div></td>
-              <td>IT / Consulting</td>
-              <td>188</td>
-              <td>9</td>
+              <td><div class="td-bold">Steel Works Ltd.</div><div style="font-size:11px;color:var(--muted)">Hosur, Tamil Nadu</div></td>
+              <td>Manufacturing</td>
+              <td>195</td>
+              <td>8</td>
               <td style="font-weight:700;color:var(--green)">₹1,71,000</td>
               <td>Feb 2027</td>
               <td><span class="status-pill sp-active">Active</span></td>
@@ -1164,11 +1165,11 @@
         <div class="fg">
           <label>Corporate Client</label>
           <select>
-            <option>Infosys BPM</option>
-            <option>WNS Global Services</option>
-            <option>Deloitte India</option>
-            <option>Tech Mahindra</option>
-            <option>Accenture HYD</option>
+            <option>Manufacturing Plant A (Krishnagiri)</option>
+            <option>Auto Components Ltd. (Hosur)</option>
+            <option>IT Solutions Pvt. Ltd. (Chennai)</option>
+            <option>Pharma Factory (Krishnagiri)</option>
+            <option>Steel Works Ltd. (Hosur)</option>
             <option>Other / Walk-in</option>
           </select>
         </div>
@@ -1187,11 +1188,11 @@
       <div class="f2">
         <div class="fg">
           <label>Pickup Location</label>
-          <input type="text" placeholder="e.g., Gachibowli, HYD" required />
+          <input type="text" placeholder="e.g., Krishnagiri, SIDCO Estate" required />
         </div>
         <div class="fg">
           <label>Drop Location</label>
-          <input type="text" placeholder="e.g., HITEC City, HYD" required />
+          <input type="text" placeholder="e.g., Hosur Factory, Chennai" required />
         </div>
       </div>
       <div class="f2">
@@ -1202,12 +1203,12 @@
         <div class="fg">
           <label>Assign Vehicle</label>
           <select>
-            <option>TS09EF4521 — Swift DZire</option>
-            <option>TS10KL7744 — Innova Crysta</option>
-            <option>TS07MN1102 — Mini Bus</option>
-            <option>TS08UV3310 — Innova Crysta</option>
-            <option>TS12AB9933 — Tempo Traveller</option>
-            <option>TS05GH6622 — Full Bus</option>
+            <option>TN29AB4521 — Swift DZire</option>
+            <option>TN33KL7744 — Innova Crysta</option>
+            <option>TN29MN1102 — Mini Bus</option>
+            <option>TN29UV3310 — Innova Crysta</option>
+            <option>TN33AB9933 — Tempo Traveller</option>
+            <option>TN01GH6622 — Full Bus</option>
           </select>
         </div>
       </div>

@@ -103,13 +103,16 @@
       height:68px; padding:0 24px;
     }
     .logo { display:flex; align-items:center; gap:10px; }
-    /* Logo image wrapper — white bg pill so it renders on any theme */
+    /* Logo image wrapper — adapts per theme */
     .logo-img-wrap {
-      background:#fff; border-radius:8px;
-      padding:3px 8px; display:flex; align-items:center;
-      border:1px solid var(--border);
+      background:transparent; border-radius:8px;
+      padding:3px 4px; display:flex; align-items:center;
     }
-    .logo-img-wrap img { height:38px; width:auto; display:block; }
+    [data-theme="dark"] .logo-img-wrap {
+      background:rgba(255,255,255,0.12);
+      padding:3px 8px;
+    }
+    .logo-img-wrap img { height:40px; width:auto; display:block; }
     .logo-text { display:flex; flex-direction:column; line-height:1.15; }
     .logo-text .brand { font-size:17px; font-weight:800; color:var(--txt); }
     .logo-text .sub   { font-size:10px; color:var(--orange); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
@@ -596,7 +599,7 @@
     }
     .foot-brand .brand { color:#fff; }
     .foot-brand .sub   { color:var(--orange); }
-    .foot-logo-wrap { background:#fff; border-radius:8px; padding:4px 10px; display:inline-flex; }
+    .foot-logo-wrap { background:rgba(255,255,255,0.12); border-radius:8px; padding:5px 10px; display:inline-flex; }
     .foot-logo-wrap img { height:36px; }
     .foot-desc { font-size:13px; color:#555; line-height:1.7; margin-top:12px; max-width:260px; }
     .social-row { display:flex; gap:8px; margin-top:16px; }
@@ -698,7 +701,7 @@
   <div class="nav-inner">
     <a href="#home" class="logo">
       <div class="logo-img-wrap">
-        <img src="LOGO.jpeg" alt="DSR Groups" />
+        <img src="LOGO.png" alt="DSR Groups" />
       </div>
     </a>
 
@@ -1599,7 +1602,7 @@
       <!-- Brand -->
       <div class="foot-brand">
         <div class="foot-logo-wrap">
-          <img src="LOGO.jpeg" alt="DSR Groups" />
+          <img src="LOGO.png" alt="DSR Groups" />
         </div>
         <p class="foot-desc">
           Tamil Nadu's leading transport management company since 2015.
