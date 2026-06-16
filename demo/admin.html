@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DSR Admin — Corporate Fleet Dashboard</title>
+  <title>DSR Groups Admin — Transport Management Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -121,13 +121,13 @@
       padding:20px 20px 16px;
       border-bottom:1px solid var(--border);
     }
-    .s-logo-ico {
-      width:36px; height:36px; background:var(--yellow); border-radius:9px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:16px; color:#000; flex-shrink:0;
+    .s-logo-img-wrap {
+      background:#fff; border-radius:7px; padding:2px 6px;
+      display:flex; align-items:center; flex-shrink:0;
     }
+    .s-logo-img-wrap img { height:30px; width:auto; display:block; }
     .s-logo-txt .brand { font-size:15px; font-weight:800; color:var(--txt); display:block; }
-    .s-logo-txt .sub   { font-size:9px; font-weight:600; color:var(--yellow); letter-spacing:1.3px; text-transform:uppercase; }
+    .s-logo-txt .sub   { font-size:9px; font-weight:600; color:#e05f1c; letter-spacing:1.3px; text-transform:uppercase; }
     .sidebar-badge {
       margin:12px 16px 4px;
       background:var(--yellow-l); border:1px solid var(--yellow-g);
@@ -538,14 +538,16 @@
 ════════════════════════════════════════ -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <div class="s-logo-ico"><i class="fas fa-car"></i></div>
+    <div class="s-logo-img-wrap">
+      <img src="LOGO.jpeg" alt="DSR Groups" />
+    </div>
     <div class="s-logo-txt">
       <span class="brand">DSR Admin</span>
       <span class="sub">Control Panel</span>
     </div>
   </div>
 
-  <span class="sidebar-badge">Corporate Suite</span>
+  <span class="sidebar-badge">Transport Management Suite</span>
 
   <nav class="nav-section">
     <div class="nav-label">Main</div>
@@ -607,10 +609,10 @@
 
   <div class="sidebar-footer">
     <div class="user-pill">
-      <div class="user-av">A</div>
+      <div class="user-av">R</div>
       <div>
-        <span class="user-name">Amit Sharma</span>
-        <span class="user-role">Super Admin</span>
+        <span class="user-name">Ravivarmaa Durai</span>
+        <span class="user-role">Managing Director</span>
       </div>
       <i class="fas fa-ellipsis-vertical"></i>
     </div>
@@ -627,7 +629,7 @@
     <button class="tb-btn" id="sideToggle" onclick="toggleSidebar()" title="Menu">
       <i class="fas fa-bars"></i>
     </button>
-    <div class="topbar-title">Dashboard <span>Overview</span></div>
+    <div class="topbar-title">DSR Groups <span>Dashboard</span></div>
 
     <div class="tb-search">
       <i class="fas fa-search"></i>
@@ -658,8 +660,8 @@
         <i class="fas fa-chevron-right" style="font-size:9px"></i>
         <span>Dashboard</span>
       </div>
-      <h2>Good Morning, Amit 👋</h2>
-      <p>Here's what's happening with your fleet today — Monday, 1 June 2026</p>
+      <h2>Good Morning, Ravivarmaa 👋</h2>
+      <p>Here's what's happening with your fleet today — DSR Groups, Tamil Nadu</p>
     </div>
 
     <!-- KPI CARDS -->
@@ -670,8 +672,8 @@
           <i class="fas fa-route"></i>
         </div>
         <div class="kpi-val" id="kTrips">0</div>
-        <div class="kpi-lbl">Trips Today</div>
-        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> +18% vs yesterday</div>
+        <div class="kpi-lbl">Trips Operated Today</div>
+        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> 130+ daily average</div>
       </div>
       <div class="kpi">
         <div class="kpi-accent" style="background:var(--green)"></div>
@@ -680,16 +682,16 @@
         </div>
         <div class="kpi-val" id="kVehicles">0</div>
         <div class="kpi-lbl">Active Vehicles</div>
-        <div class="kpi-delta flat"><i class="fas fa-minus"></i> 87 total fleet</div>
+        <div class="kpi-delta flat"><i class="fas fa-minus"></i> 75+ total fleet</div>
       </div>
       <div class="kpi">
         <div class="kpi-accent" style="background:var(--blue)"></div>
         <div class="kpi-ico" style="background:var(--blue-l);color:var(--blue)">
-          <i class="fas fa-building"></i>
+          <i class="fas fa-users"></i>
         </div>
         <div class="kpi-val" id="kClients">0</div>
-        <div class="kpi-lbl">Active Corporate Clients</div>
-        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> 4 new this month</div>
+        <div class="kpi-lbl">Employees Transported Today</div>
+        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> 6000+ daily</div>
       </div>
       <div class="kpi">
         <div class="kpi-accent" style="background:var(--purple)"></div>
@@ -922,36 +924,36 @@
       <!-- Fleet Status -->
       <div class="chart-card">
         <div class="chart-hdr">
-          <div><h3>Fleet Status</h3><p>Live vehicle health — 87 total</p></div>
+          <div><h3>Fleet Status</h3><p>Live vehicle health — 75+ total</p></div>
           <button class="tbl-btn" onclick="showToast('Opening fleet management…')">Manage</button>
         </div>
         <div class="donut-grid">
           <div class="donut-item">
-            <div class="donut-num" style="color:var(--green)">62</div>
+            <div class="donut-num" style="color:var(--green)">55</div>
             <div class="donut-lbl">Active</div>
             <div class="donut-bar" style="background:var(--green-l)">
-              <div style="height:100%;width:71%;background:var(--green);border-radius:2px"></div>
+              <div style="height:100%;width:73%;background:var(--green);border-radius:2px"></div>
             </div>
           </div>
           <div class="donut-item">
-            <div class="donut-num" style="color:var(--yellow)">14</div>
+            <div class="donut-num" style="color:var(--yellow)">12</div>
             <div class="donut-lbl">Idle</div>
             <div class="donut-bar" style="background:var(--yellow-l)">
               <div style="height:100%;width:16%;background:var(--yellow);border-radius:2px"></div>
             </div>
           </div>
           <div class="donut-item">
-            <div class="donut-num" style="color:var(--red)">7</div>
+            <div class="donut-num" style="color:var(--red)">5</div>
             <div class="donut-lbl">Maintenance</div>
             <div class="donut-bar" style="background:var(--red-l)">
-              <div style="height:100%;width:8%;background:var(--red);border-radius:2px"></div>
+              <div style="height:100%;width:7%;background:var(--red);border-radius:2px"></div>
             </div>
           </div>
           <div class="donut-item">
-            <div class="donut-num" style="color:var(--blue)">4</div>
+            <div class="donut-num" style="color:var(--blue)">3</div>
             <div class="donut-lbl">Offline</div>
             <div class="donut-bar" style="background:var(--blue-l)">
-              <div style="height:100%;width:5%;background:var(--blue);border-radius:2px"></div>
+              <div style="height:100%;width:4%;background:var(--blue);border-radius:2px"></div>
             </div>
           </div>
         </div>
@@ -1298,10 +1300,10 @@ function animateCount(id, target, prefix='', suffix='', duration=1200) {
   requestAnimationFrame(step);
 }
 setTimeout(() => {
-  animateCount('kTrips',   148);
-  animateCount('kVehicles', 62);
-  animateCount('kClients', 214);
-  animateCount('kRevenue', 1824600, '₹');
+  animateCount('kTrips',    134);
+  animateCount('kVehicles',  62);
+  animateCount('kClients', 6240);
+  animateCount('kRevenue', 1420000, '₹');
 }, 300);
 
 /* ── CHART.JS SETUP ─────────────────────── */

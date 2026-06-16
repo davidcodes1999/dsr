@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DSR Tours &amp; Travels — Corporate Cab &amp; Rental Services, Hyderabad</title>
+  <title>DSR Groups — Transport Management Solutions, Tamil Nadu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -31,6 +31,7 @@
       --hero-ol:     rgba(0,0,0,0.62);
       --footer-bg:   #0a0a0a;
       --tag-txt:     #a07800;
+      --orange:      #e05f1c;
     }
     :root[data-theme="dark"] {
       --bg:          #090909;
@@ -52,6 +53,7 @@
       --hero-ol:     rgba(0,0,0,0.73);
       --footer-bg:   #030303;
       --tag-txt:     #FFC300;
+      --orange:      #e05f1c;
     }
 
     /* ═══════════════════════════════════════════
@@ -101,14 +103,16 @@
       height:68px; padding:0 24px;
     }
     .logo { display:flex; align-items:center; gap:10px; }
-    .logo-icon {
-      width:40px; height:40px; background:var(--yellow);
-      border-radius:10px; display:flex; align-items:center;
-      justify-content:center; font-size:18px; color:#000; flex-shrink:0;
+    /* Logo image wrapper — white bg pill so it renders on any theme */
+    .logo-img-wrap {
+      background:#fff; border-radius:8px;
+      padding:3px 8px; display:flex; align-items:center;
+      border:1px solid var(--border);
     }
+    .logo-img-wrap img { height:38px; width:auto; display:block; }
     .logo-text { display:flex; flex-direction:column; line-height:1.15; }
     .logo-text .brand { font-size:17px; font-weight:800; color:var(--txt); }
-    .logo-text .sub   { font-size:10px; color:var(--yellow); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
+    .logo-text .sub   { font-size:10px; color:var(--orange); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
     .nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
     .nav-links a {
       font-size:13px; font-weight:500; color:var(--txt2);
@@ -294,6 +298,44 @@
     .fi.d5{transition-delay:.35s} .fi.d6{transition-delay:.42s}
 
     /* ═══════════════════════════════════════════
+       ABOUT BAND
+    ═══════════════════════════════════════════ */
+    .about-band {
+      background:linear-gradient(135deg, #0d0d0d 60%, #1a1000);
+      padding:60px 24px;
+    }
+    .about-inner {
+      max-width:1300px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+    }
+    .about-tag {
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(255,195,0,.15); border:1px solid rgba(255,195,0,.30);
+      color:var(--yellow); padding:5px 14px; border-radius:50px;
+      font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+      margin-bottom:16px;
+    }
+    .about-band h2 { font-size:clamp(22px,3vw,34px); font-weight:800; color:#fff; line-height:1.3; margin-bottom:14px; }
+    .about-band h2 span { color:var(--yellow); }
+    .about-band p { font-size:14.5px; color:rgba(255,255,255,.65); line-height:1.8; margin-bottom:16px; }
+    .md-card {
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,195,0,.2);
+      border-radius:16px; padding:20px 22px; margin-top:22px;
+    }
+    .md-card .md-name { font-size:16px; font-weight:800; color:var(--yellow); display:block; }
+    .md-card .md-title { font-size:12px; color:rgba(255,255,255,.5); margin-top:2px; display:block; }
+    .md-card .md-quote { font-size:13.5px; color:rgba(255,255,255,.75); line-height:1.7; margin-top:10px; font-style:italic; }
+    .about-stats {
+      display:grid; grid-template-columns:1fr 1fr; gap:16px;
+    }
+    .astat {
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+      border-radius:16px; padding:22px 20px; text-align:center;
+    }
+    .astat .n { font-size:36px; font-weight:900; color:var(--yellow); display:block; line-height:1; margin-bottom:6px; }
+    .astat .l { font-size:12px; color:rgba(255,255,255,.5); }
+
+    /* ═══════════════════════════════════════════
        SOLUTIONS GRID
     ═══════════════════════════════════════════ */
     .sol-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:22px; }
@@ -440,6 +482,26 @@
     .why-card p  { font-size:13px; color:var(--muted); line-height:1.6; }
 
     /* ═══════════════════════════════════════════
+       TECHNOLOGY SECTION
+    ═══════════════════════════════════════════ */
+    .tech-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:18px; }
+    .tech-card {
+      background:var(--card); border:1px solid var(--border); border-radius:14px;
+      padding:20px 18px;
+      transition:transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .tech-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-h); border-color:var(--yellow); }
+    .tech-ico {
+      width:46px; height:46px; background:var(--yellow-l); border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:20px; color:var(--yellow); margin-bottom:12px;
+      transition:background .3s, color .3s;
+    }
+    .tech-card:hover .tech-ico { background:var(--yellow); color:#000; }
+    .tech-card h3 { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:5px; }
+    .tech-card p  { font-size:12.5px; color:var(--muted); line-height:1.6; }
+
+    /* ═══════════════════════════════════════════
        ROUTES
     ═══════════════════════════════════════════ */
     .routes-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:11px; }
@@ -492,7 +554,7 @@
     .cinfo-hdr h2 { font-size:clamp(22px,3vw,32px); font-weight:800; color:var(--txt); margin-bottom:12px; }
     .cinfo-hdr p  { font-size:15px; color:var(--muted); line-height:1.7; margin-bottom:28px; }
     .cinfo-list { display:flex; flex-direction:column; gap:15px; }
-    .cinfo-item { display:flex; align-items:center; gap:13px; }
+    .cinfo-item { display:flex; align-items:flex-start; gap:13px; }
     .cinfo-ico  {
       width:44px; height:44px; background:var(--yellow-l); border-radius:12px;
       display:flex; align-items:center; justify-content:center; font-size:17px; color:var(--yellow); flex-shrink:0;
@@ -508,6 +570,22 @@
     .form-box h3 { font-size:20px; font-weight:800; color:var(--txt); margin-bottom:4px; }
     .form-box > p { font-size:13px; color:var(--muted); margin-bottom:20px; }
 
+    /* Offices grid */
+    .offices-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:20px; }
+    .office-card {
+      background:var(--card); border:1px solid var(--border); border-radius:14px;
+      padding:18px; transition:border-color .2s;
+    }
+    .office-card:hover { border-color:var(--yellow); }
+    .office-tag {
+      display:inline-flex; align-items:center; gap:5px;
+      background:var(--yellow-l); color:var(--tag-txt);
+      font-size:10px; font-weight:700; padding:3px 10px; border-radius:50px;
+      margin-bottom:10px; text-transform:uppercase; letter-spacing:.8px;
+    }
+    .office-card h4 { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:6px; }
+    .office-card p { font-size:12.5px; color:var(--muted); line-height:1.65; }
+
     /* ═══════════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════════ */
@@ -517,7 +595,9 @@
       display:grid; grid-template-columns:1.8fr 1fr 1fr 1.5fr; gap:40px; margin-bottom:44px;
     }
     .foot-brand .brand { color:#fff; }
-    .foot-brand .sub   { color:var(--yellow); }
+    .foot-brand .sub   { color:var(--orange); }
+    .foot-logo-wrap { background:#fff; border-radius:8px; padding:4px 10px; display:inline-flex; }
+    .foot-logo-wrap img { height:36px; }
     .foot-desc { font-size:13px; color:#555; line-height:1.7; margin-top:12px; max-width:260px; }
     .social-row { display:flex; gap:8px; margin-top:16px; }
     .soc-btn {
@@ -587,6 +667,7 @@
       .foot-grid   { grid-template-columns:1fr 1fr; }
       .how-grid    { grid-template-columns:repeat(2,1fr); gap:32px; }
       .how-grid::before { display:none; }
+      .about-inner { grid-template-columns:1fr; }
     }
     @media(max-width:860px) {
       .hero-inner   { grid-template-columns:1fr; text-align:center; }
@@ -616,10 +697,8 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#home" class="logo">
-      <div class="logo-icon"><i class="fas fa-car"></i></div>
-      <div class="logo-text">
-        <span class="brand">DSR Tours</span>
-        <span class="sub">&amp; Travels</span>
+      <div class="logo-img-wrap">
+        <img src="LOGO.jpeg" alt="DSR Groups" />
       </div>
     </a>
 
@@ -637,8 +716,8 @@
         <i class="fas fa-sun theme-icon" id="themeIcon"></i>
         <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
       </div>
-      <a href="tel:+918019971305" class="nav-phone">
-        <i class="fas fa-phone"></i> 8019971305
+      <a href="tel:+917558139995" class="nav-phone">
+        <i class="fas fa-phone"></i> 75581 39995
       </a>
       <a href="#contact" class="nav-book">
         <i class="fas fa-briefcase"></i> Corporate Enquiry
@@ -661,10 +740,10 @@
     <li><a href="#contact"    onclick="closeMenu()">Contact</a></li>
   </ul>
   <div class="mob-footer">
-    <a href="tel:+918019971305" class="btn-primary" style="flex:1;justify-content:center;border-radius:50px;">
+    <a href="tel:+917558139995" class="btn-primary" style="flex:1;justify-content:center;border-radius:50px;">
       <i class="fas fa-phone"></i> Call Us
     </a>
-    <a href="https://wa.me/+918019971305" class="btn-wa" style="flex:1;border-radius:50px;padding:13px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;">
+    <a href="https://wa.me/+917558139995" class="btn-wa" style="flex:1;border-radius:50px;padding:13px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;">
       <i class="fab fa-whatsapp"></i> WhatsApp
     </a>
   </div>
@@ -683,26 +762,27 @@
     <!-- Left: Text -->
     <div>
       <div class="hero-badge">
-        <i class="fas fa-building"></i>&nbsp; Hyderabad's #1 Corporate Cab Partner
+        <i class="fas fa-building"></i>&nbsp; South India's Leading Transport Management Partner
       </div>
-      <h1>Corporate Travel,<br><span>Managed Perfectly.</span></h1>
+      <h1>Employee Transport,<br><span>Managed Perfectly.</span></h1>
       <p class="hero-desc">
-        End-to-end employee transport, executive rentals &amp; fleet management under one corporate account.
-        GST invoicing, dedicated account manager, and 24/7 support — designed for serious businesses.
+        End-to-end employee transportation, executive rentals &amp; fleet management — serving manufacturing,
+        IT parks &amp; corporates across Tamil Nadu since 2015. GST invoicing, dedicated account manager,
+        and 24/7 support designed for serious businesses.
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn-primary">
           <i class="fas fa-briefcase"></i> Get Corporate Quote
         </a>
-        <a href="tel:+918019971305" class="btn-ghost">
+        <a href="tel:+917558139995" class="btn-ghost">
           <i class="fas fa-phone"></i> Call Sales
         </a>
       </div>
       <div class="trust-row">
         <div class="trust-badge"><i class="fas fa-file-invoice"></i> GST Invoicing</div>
-        <div class="trust-badge"><i class="fas fa-satellite-dish"></i> Live GPS</div>
+        <div class="trust-badge"><i class="fas fa-satellite-dish"></i> Live GPS &amp; IVMS</div>
         <div class="trust-badge"><i class="fas fa-clock"></i> 24/7 Support</div>
-        <div class="trust-badge"><i class="fas fa-user-tie"></i> Dedicated Manager</div>
+        <div class="trust-badge"><i class="fas fa-mobile-screen"></i> Safetrax App</div>
       </div>
     </div>
 
@@ -755,6 +835,7 @@
               <option>Monthly Fleet Rental</option>
               <option>Event Transportation</option>
               <option>Outstation Business Trip</option>
+              <option>Manpower Solutions</option>
             </select>
           </div>
         </div>
@@ -771,50 +852,96 @@
 </section>
 
 <!-- ════════════════════════════════════════════
+     ABOUT / FOUNDER
+════════════════════════════════════════════ -->
+<div class="about-band" id="about">
+  <div class="about-inner">
+    <div class="fi">
+      <div class="about-tag"><i class="fas fa-building"></i>&nbsp; About DSR Groups</div>
+      <h2>Driving Tamil Nadu's <span>Corporate Transport</span> Since 2015</h2>
+      <p>
+        DSR Groups (formerly DSR Travels) was established in 2015 as a proprietorship committed to providing
+        world-class, innovative and reliable transport services. We have grown into a leading transport management
+        group with a fleet spanning Chennai, Krishnagiri and Hosur.
+      </p>
+      <p>
+        We are committed to our mission of driving customer satisfaction and socio-economic development of the
+        region — transporting over <strong style="color:var(--yellow)">6,000+ employees every day</strong> for
+        manufacturing companies, IT parks, BPOs and enterprises across Tamil Nadu.
+      </p>
+      <div class="md-card">
+        <span class="md-name">Mr. Ravivarmaa Durai</span>
+        <span class="md-title">Founder &amp; Managing Director — DSR Groups</span>
+        <p class="md-quote">"Our vision is to become the best transport solution in South India — combining
+        technology, professionalism and commitment to safety. Your Wealth Is Our Success!"</p>
+      </div>
+    </div>
+    <div class="about-stats fi">
+      <div class="astat">
+        <span class="n">130+</span>
+        <span class="l">Trips Operated Per Day</span>
+      </div>
+      <div class="astat">
+        <span class="n">6000+</span>
+        <span class="l">Employees Transported Daily</span>
+      </div>
+      <div class="astat">
+        <span class="n">75+</span>
+        <span class="l">Fleet Vehicles Managed</span>
+      </div>
+      <div class="astat">
+        <span class="n">10+</span>
+        <span class="l">Years in Business</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
      CORPORATE SOLUTIONS
 ════════════════════════════════════════════ -->
 <section class="section alt" id="solutions">
   <div class="sec-inner">
     <div class="sec-hdr fi">
-      <div class="sec-tag"><i class="fas fa-building"></i>&nbsp; Corporate Solutions</div>
-      <h2 class="sec-title">Everything Your <span>Business Needs</span></h2>
-      <p class="sec-desc">Flexible, scalable transport solutions built for IT parks, BPOs, manufacturing units, hospitals and enterprises of all sizes.</p>
+      <div class="sec-tag"><i class="fas fa-building"></i>&nbsp; Business Verticals</div>
+      <h2 class="sec-title">Complete <span>Transport &amp; Manpower</span> Solutions</h2>
+      <p class="sec-desc">Flexible, scalable solutions built for manufacturing companies, IT parks, BPOs and enterprises of all sizes across Tamil Nadu.</p>
     </div>
     <div class="sol-grid">
       <div class="sol-card fi d1">
         <div class="sol-ico"><i class="fas fa-users"></i></div>
         <h3>Employee Daily Transport</h3>
-        <p>Scheduled pickup &amp; drop for your entire workforce across multiple shifts. Fixed routes, real-time tracking, and monthly consolidated billing for easy accounting.</p>
+        <p>End-to-end transportation with technology — trip module, slab-wise cost, monthly package, per-head costing and on-call (RAC) booking. Scheduled pickup &amp; drop for your entire workforce across multiple shifts.</p>
         <a href="#contact" class="sol-link">Get Proposal <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="sol-card fi d2">
         <div class="sol-ico"><i class="fas fa-user-tie"></i></div>
-        <h3>Executive &amp; CXO Cabs</h3>
-        <p>Premium Innova Crysta and luxury sedans with uniformed chauffeurs for your leadership team, board members, and high-value clients. On-demand or pre-scheduled.</p>
+        <h3>Executive &amp; Premier Cabs</h3>
+        <p>Premium Innova Crysta and luxury sedans with uniformed chauffeurs for your leadership team, board members and high-value clients. On-demand or pre-scheduled airport transfers and outstation packages.</p>
         <a href="#contact" class="sol-link">Book Executive Cab <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="sol-card fi d3">
-        <div class="sol-ico"><i class="fas fa-plane-arrival"></i></div>
-        <h3>Corporate Airport Transfers</h3>
-        <p>Reliable airport pickups &amp; drops at Rajiv Gandhi International Airport with flight-tracking. No extra charge for delays. Available 24/7 for your team.</p>
-        <a href="#contact" class="sol-link">Schedule Transfer <i class="fas fa-arrow-right"></i></a>
+        <div class="sol-ico"><i class="fas fa-map-pin"></i></div>
+        <h3>Nodal &amp; Fixed Route Services</h3>
+        <p>Pickup &amp; drop within 1–1.5 km radius of nodal points. Travel time for 50 km radius approximately 90 minutes. Fixed route services at stipulated points at pre-fixed schedules across your city zones.</p>
+        <a href="#contact" class="sol-link">Plan Routes <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="sol-card fi d4">
-        <div class="sol-ico"><i class="fas fa-calendar-alt"></i></div>
-        <h3>Monthly Fleet Rental</h3>
-        <p>Dedicated vehicles assigned exclusively to your company monthly. Fixed cost, zero surge pricing, dedicated driver per vehicle, and priority maintenance support.</p>
+        <div class="sol-ico"><i class="fas fa-bus-simple"></i></div>
+        <h3>Shuttle Services</h3>
+        <p>Pickup &amp; drop from nearby Metro stations, bus stations and common points in multiple runs. Designed to cover last-mile connectivity for your employees efficiently and cost-effectively.</p>
         <a href="#plans" class="sol-link">View Plans <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="sol-card fi d5">
-        <div class="sol-ico"><i class="fas fa-star"></i></div>
-        <h3>Corporate Event Transport</h3>
-        <p>Conferences, offsites, team outings, client events — bulk vehicle deployment with a dedicated on-ground coordinator managing logistics for the entire event day.</p>
-        <a href="#contact" class="sol-link">Plan Your Event <i class="fas fa-arrow-right"></i></a>
+        <div class="sol-ico"><i class="fas fa-hard-hat"></i></div>
+        <h3>Manpower Solutions</h3>
+        <p>Providing skilled manpower for housekeeping, security and manufacturing activities. A complete workforce solution that complements your transport management needs under one corporate account.</p>
+        <a href="#contact" class="sol-link">Enquire Now <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="sol-card fi d6">
         <div class="sol-ico"><i class="fas fa-route"></i></div>
-        <h3>Outstation Business Travel</h3>
-        <p>Intercity travel to Vijayawada, Bangalore, Chennai &amp; 100+ routes with professional drivers, one-way or round trip. Corporate pricing with monthly invoicing.</p>
+        <h3>Outstation &amp; Adhoc Travel</h3>
+        <p>Intercity travel across Tamil Nadu and South India with professional drivers. ADHOC bookings with a minimum 3-hour lead time. Emergency vehicles on monthly contract commercials, available at your location.</p>
         <a href="#routes" class="sol-link">Explore Routes <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
@@ -862,19 +989,19 @@
 <div class="stats-band">
   <div class="stats-inner">
     <div class="sstat fi d1">
-      <span class="n" data-target="200" data-suffix="+">0+</span>
-      <span class="l">Corporate Clients</span>
+      <span class="n" data-target="130" data-suffix="+">0+</span>
+      <span class="l">Trips Operated Per Day</span>
     </div>
     <div class="sstat fi d2">
-      <span class="n" data-target="50000" data-suffix="+">0+</span>
-      <span class="l">Trips Completed / Year</span>
+      <span class="n" data-target="6000" data-suffix="+">0+</span>
+      <span class="l">Employees Transported Daily</span>
     </div>
     <div class="sstat fi d3">
-      <span class="n" data-target="100" data-suffix="+">0+</span>
-      <span class="l">Fleet Vehicles</span>
+      <span class="n" data-target="75" data-suffix="+">0+</span>
+      <span class="l">Fleet Vehicles Managed</span>
     </div>
     <div class="sstat fi d4">
-      <span class="n" data-target="8" data-suffix="">0</span>
+      <span class="n" data-target="10" data-suffix="+">0</span>
       <span class="l">Years in Business</span>
     </div>
   </div>
@@ -887,8 +1014,8 @@
   <div class="sec-inner">
     <div class="sec-hdr fi">
       <div class="sec-tag"><i class="fas fa-car-side"></i>&nbsp; Our Fleet</div>
-      <h2 class="sec-title">A Fleet Built for <span>Business</span></h2>
-      <p class="sec-desc">From compact sedans for executives to 50-seater buses for large teams — every vehicle is fully AC, GPS-tracked and professionally maintained.</p>
+      <h2 class="sec-title">A Fleet Built for <span>Every Business Need</span></h2>
+      <p class="sec-desc">From compact sedans for executives to 50-seater buses for large teams — every vehicle is fully AC, GPS-tracked and professionally maintained at OEM garages only.</p>
     </div>
 
     <div class="fleet-grid">
@@ -909,8 +1036,8 @@
             <span class="ftag"><i class="fas fa-briefcase"></i> Corporate</span>
           </div>
           <div class="fleet-actions">
-            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
-            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917558139995"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+917558139995" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -930,8 +1057,8 @@
             <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
           </div>
           <div class="fleet-actions">
-            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
-            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917558139995"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+917558139995" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -948,12 +1075,12 @@
           <div class="fleet-tags">
             <span class="ftag"><i class="fas fa-users"></i> 7 Seater</span>
             <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
-            <span class="ftag"><i class="fas fa-star"></i> Luxury</span>
+            <span class="ftag"><i class="fas fa-star"></i> Premier</span>
             <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
           </div>
           <div class="fleet-actions">
-            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
-            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917558139995"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+917558139995" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -970,11 +1097,12 @@
           <div class="fleet-tags">
             <span class="ftag"><i class="fas fa-users"></i> 12–17 Seats</span>
             <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-camera"></i> CCTV</span>
             <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
           </div>
           <div class="fleet-actions">
-            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
-            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917558139995"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+917558139995" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -991,11 +1119,12 @@
           <div class="fleet-tags">
             <span class="ftag"><i class="fas fa-users"></i> 18–30 Seats</span>
             <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-camera"></i> CCTV</span>
             <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
           </div>
           <div class="fleet-actions">
-            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
-            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917558139995"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+917558139995" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -1012,11 +1141,12 @@
           <div class="fleet-tags">
             <span class="ftag"><i class="fas fa-users"></i> 30–50 Seats</span>
             <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-camera"></i> CCTV</span>
             <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
           </div>
           <div class="fleet-actions">
-            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
-            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917558139995"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+917558139995" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
         </div>
       </div>
@@ -1045,7 +1175,7 @@
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Up to 5 Vehicles (Sedan / MPV)</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Up to 50 Employees</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 2 Shifts per Day</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Basic GPS Tracking</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> GPS &amp; IVMS Tracking</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Monthly GST Invoice</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Phone &amp; WhatsApp Support</li>
           <li><i class="fas fa-times-circle" style="color:var(--muted)"></i> Dedicated Account Manager</li>
@@ -1059,10 +1189,10 @@
         <div class="plan-title">Mid-Size Company</div>
         <ul class="plan-list">
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 6–20 Vehicles (Any Type)</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 50–300 Employees</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 50–500 Employees</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Unlimited Shift Schedules</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Live GPS + Trip Reports</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Consolidated Monthly Invoice</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Live GPS + CCTV + Trip Reports</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> RFID Attendance Capture</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Dedicated Account Manager</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 24/7 Emergency Support</li>
         </ul>
@@ -1075,11 +1205,11 @@
         <div class="plan-title">Large Enterprise</div>
         <ul class="plan-list">
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 20+ Vehicles — Full Fleet</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 300+ Employees — Any Scale</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 500+ Employees — Any Scale</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Custom Route Optimization</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Branded Vehicle Wraps</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Safetrax Commuter App Integration</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> On-site Fleet Coordinator</li>
-          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> HRMS / ERP Integration</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Driver Medical Health Checks</li>
           <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Priority 24/7 SLA Support</li>
         </ul>
         <button class="plan-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Sales</button>
@@ -1090,14 +1220,14 @@
 </section>
 
 <!-- ════════════════════════════════════════════
-     WHY CORPORATE CLIENTS CHOOSE DSR
+     WHY CHOOSE DSR
 ════════════════════════════════════════════ -->
 <section class="section alt" id="why">
   <div class="sec-inner">
     <div class="sec-hdr fi">
       <div class="sec-tag"><i class="fas fa-trophy"></i>&nbsp; Our Advantage</div>
-      <h2 class="sec-title">Why 200+ Companies <span>Choose DSR</span></h2>
-      <p class="sec-desc">Not just a cab service — a complete corporate transport management partner built for operational excellence.</p>
+      <h2 class="sec-title">Why Companies <span>Choose DSR Groups</span></h2>
+      <p class="sec-desc">Not just a cab service — a complete corporate transport management partner built for operational excellence and compliance.</p>
     </div>
     <div class="why-grid">
       <div class="why-card fi d1">
@@ -1112,18 +1242,18 @@
       </div>
       <div class="why-card fi d3">
         <div class="why-ico"><i class="fas fa-satellite-dish"></i></div>
-        <h3>Real-Time GPS Tracking</h3>
-        <p>Live tracking on every trip. Know exactly where your employees are, around the clock.</p>
+        <h3>GPS &amp; IVMS Tracking</h3>
+        <p>Vehicle live tracking, AVL location services, health metric reporting and accident detection on every trip.</p>
       </div>
       <div class="why-card fi d4">
         <div class="why-ico"><i class="fas fa-shield-alt"></i></div>
         <h3>100% Verified Drivers</h3>
-        <p>Police-verified, trained in safety protocols and regularly background-audited drivers only.</p>
+        <p>Police-verified, background-checked drivers with quarterly medical health checks and training programs.</p>
       </div>
       <div class="why-card fi d5">
-        <div class="why-ico"><i class="fas fa-chart-bar"></i></div>
-        <h3>Monthly Analytics</h3>
-        <p>Detailed trip logs, utilization dashboards and cost analysis delivered automatically every month.</p>
+        <div class="why-ico"><i class="fas fa-camera"></i></div>
+        <h3>Safety-First Technology</h3>
+        <p>CCTV live viewing, panic buttons, smoke detectors, rear-view cameras and seatbelts on all vehicles.</p>
       </div>
       <div class="why-card fi d6">
         <div class="why-ico"><i class="fas fa-headset"></i></div>
@@ -1135,80 +1265,135 @@
 </section>
 
 <!-- ════════════════════════════════════════════
+     TECHNOLOGY
+════════════════════════════════════════════ -->
+<section class="section" id="technology">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-microchip"></i>&nbsp; Technology</div>
+      <h2 class="sec-title">Powered by <span>Smart Transport Tech</span></h2>
+      <p class="sec-desc">We leverage cutting-edge technology to ensure safety, transparency and real-time visibility for every trip we operate.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card fi d1">
+        <div class="tech-ico"><i class="fas fa-map-location-dot"></i></div>
+        <h3>GPS / IVMS Live Tracking</h3>
+        <p>Real-time vehicle location, trip status and advanced vehicle location (AVL) services with health metric reporting.</p>
+      </div>
+      <div class="tech-card fi d2">
+        <div class="tech-ico"><i class="fas fa-mobile-screen-button"></i></div>
+        <h3>Safetrax Commuter App</h3>
+        <p>Employee app on iOS &amp; Android — trip summary, self-boarding options, schedules, active trips and future trip visibility.</p>
+      </div>
+      <div class="tech-card fi d3">
+        <div class="tech-ico"><i class="fas fa-camera-cctv"></i></div>
+        <h3>CCTV Live Monitoring</h3>
+        <p>Installed CC cameras with live viewing to monitor driver behaviour and employee movement in larger capacity vehicles.</p>
+      </div>
+      <div class="tech-card fi d4">
+        <div class="tech-ico"><i class="fas fa-circle-exclamation"></i></div>
+        <h3>Panic Button &amp; DMS</h3>
+        <p>Physical panic alert device installed in every vehicle. Driver Monitoring System (DMS) detects harsh braking, lane swerving and aggressive driving.</p>
+      </div>
+      <div class="tech-card fi d5">
+        <div class="tech-ico"><i class="fas fa-id-card"></i></div>
+        <h3>RFID Attendance</h3>
+        <p>RFID readers capture real-time employee attendance on boarding — eliminating manual records and ensuring accountability.</p>
+      </div>
+      <div class="tech-card fi d6">
+        <div class="tech-ico"><i class="fas fa-face-viewfinder"></i></div>
+        <h3>Face Detector</h3>
+        <p>Face recognition for attendance and to avoid unauthorized entries in vehicles — deployed on client request and approval.</p>
+      </div>
+      <div class="tech-card fi d1">
+        <div class="tech-ico"><i class="fas fa-bell"></i></div>
+        <h3>Real-Time Notifications</h3>
+        <p>Employee notifications for driver reaching, ETA and ETD. Regular interaction through WhatsApp groups for seamless communication.</p>
+      </div>
+      <div class="tech-card fi d2">
+        <div class="tech-ico"><i class="fas fa-smoke-detector"></i></div>
+        <h3>Safety Sensors</h3>
+        <p>Smoke detectors and rear-view cameras installed in all vehicles to prevent fire hazards and eliminate blind-spot accidents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
      OUTSTATION ROUTES
 ════════════════════════════════════════════ -->
-<section class="section" id="routes">
+<section class="section alt" id="routes">
   <div class="sec-inner">
     <div class="sec-hdr fi">
       <div class="sec-tag"><i class="fas fa-map-marked-alt"></i>&nbsp; Business Routes</div>
-      <h2 class="sec-title">Outstation <span>Business Travel</span> from Hyderabad</h2>
+      <h2 class="sec-title">Outstation <span>Business Travel</span> from Tamil Nadu</h2>
       <p class="sec-desc">Intercity cabs for client visits, branch office travel and business meetings — all with corporate pricing and monthly invoicing.</p>
     </div>
     <div class="routes-grid">
       <a href="#contact" class="route-card fi d1">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Vijayawada</span><span class="rd">~275 km · ~4.5 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Krishnagiri</span><span class="rd">~200 km · ~3.5 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d2">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Bangalore</span><span class="rd">~570 km · ~9 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Hosur</span><span class="rd">~40 km · ~1 hr</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d3">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Chennai</span><span class="rd">~630 km · ~9 hrs</span></div>
+        <div class="route-info"><span class="rn">Krishnagiri ↔ Bangalore</span><span class="rd">~90 km · ~2 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d4">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Tirupati</span><span class="rd">~565 km · ~8 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Bangalore</span><span class="rd">~345 km · ~6 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d1">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Pune</span><span class="rd">~560 km · ~9 hrs</span></div>
+        <div class="route-info"><span class="rn">Hosur ↔ Bangalore</span><span class="rd">~35 km · ~1 hr</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d2">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Warangal</span><span class="rd">~145 km · ~2.5 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Vellore</span><span class="rd">~145 km · ~2.5 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d3">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Mumbai</span><span class="rd">~720 km · ~12 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Pondicherry</span><span class="rd">~170 km · ~3 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d4">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Karimnagar</span><span class="rd">~165 km · ~3 hrs</span></div>
+        <div class="route-info"><span class="rn">Krishnagiri ↔ Salem</span><span class="rd">~95 km · ~2 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d1">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Nalgonda</span><span class="rd">~90 km · ~1.5 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Tirupati</span><span class="rd">~155 km · ~3 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d2">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Gulbarga</span><span class="rd">~215 km · ~3.5 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Coimbatore</span><span class="rd">~500 km · ~8 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d3">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Nanded</span><span class="rd">~275 km · ~5 hrs</span></div>
+        <div class="route-info"><span class="rn">Hosur ↔ Krishnagiri</span><span class="rd">~60 km · ~1.5 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
       <a href="#contact" class="route-card fi d4">
         <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="route-info"><span class="rn">Guntur</span><span class="rd">~255 km · ~4 hrs</span></div>
+        <div class="route-info"><span class="rn">Chennai ↔ Kanchipuram</span><span class="rd">~75 km · ~1.5 hrs</span></div>
         <i class="fas fa-chevron-right rarr"></i>
       </a>
     </div>
     <div style="text-align:center;margin-top:30px" class="fi">
       <a href="#contact" class="btn-primary">
-        <i class="fas fa-map"></i> Enquire for All 100+ Routes
+        <i class="fas fa-map"></i> Enquire for All Routes
       </a>
     </div>
   </div>
@@ -1217,49 +1402,49 @@
 <!-- ════════════════════════════════════════════
      TESTIMONIALS — CORPORATE CLIENTS
 ════════════════════════════════════════════ -->
-<section class="section alt" id="reviews">
+<section class="section" id="reviews">
   <div class="sec-inner">
     <div class="sec-hdr fi">
       <div class="sec-tag"><i class="fas fa-building"></i>&nbsp; Client Stories</div>
       <h2 class="sec-title">Trusted by <span>Leading Companies</span></h2>
-      <p class="sec-desc">What HR managers and operations heads say about their experience with DSR Tours &amp; Travels.</p>
+      <p class="sec-desc">What HR managers and operations heads say about their experience with DSR Groups.</p>
     </div>
     <div class="testi-grid">
       <div class="testi-card fi d1">
         <div class="testi-top">
-          <div class="testi-av">A</div>
+          <div class="testi-av">P</div>
           <div class="testi-meta">
-            <span class="name">Ananya Krishnan</span>
+            <span class="name">Priya Selvam</span>
             <span class="desg">Senior HR Manager</span>
-            <span class="testi-co"><i class="fas fa-building"></i> Infosys BPM, Hyderabad</span>
+            <span class="testi-co"><i class="fas fa-industry"></i> Manufacturing Co., Krishnagiri</span>
           </div>
         </div>
         <div class="stars">★★★★★</div>
-        <p class="testi-txt">"We switched to DSR for our 400-employee shift transport 2 years ago. Zero incidents, on-time every single day. Their dedicated manager resolves issues within minutes. The monthly GST billing is seamless — our finance team loves it."</p>
+        <p class="testi-txt">"We switched to DSR Groups for our 300-employee shift transport 3 years ago. Zero incidents, on-time every single day. Their dedicated manager resolves issues within minutes. The monthly GST billing is seamless — our finance team loves it."</p>
       </div>
       <div class="testi-card fi d2">
         <div class="testi-top">
           <div class="testi-av">R</div>
           <div class="testi-meta">
-            <span class="name">Rajesh Mehra</span>
+            <span class="name">Rajesh Kumar</span>
             <span class="desg">Head of Operations</span>
-            <span class="testi-co"><i class="fas fa-building"></i> Deloitte, Hyderabad</span>
+            <span class="testi-co"><i class="fas fa-building"></i> IT Company, Chennai</span>
           </div>
         </div>
         <div class="stars">★★★★★</div>
-        <p class="testi-txt">"We needed executive cabs for 30 senior leaders flying in for a leadership summit. DSR deployed Innova Crystas for all airport pickups — all on time, all professional. The event coordination was absolutely flawless."</p>
+        <p class="testi-txt">"The Safetrax app integration has been a game-changer. Our employees get real-time ETA updates and the self-boarding feature saves so much time during peak shift hours. DSR's technology sets them miles apart from other vendors."</p>
       </div>
       <div class="testi-card fi d3">
         <div class="testi-top">
           <div class="testi-av">S</div>
           <div class="testi-meta">
-            <span class="name">Sravanthi Reddy</span>
+            <span class="name">Suresh Babu</span>
             <span class="desg">Admin &amp; Facilities Manager</span>
-            <span class="testi-co"><i class="fas fa-building"></i> WNS Global Services</span>
+            <span class="testi-co"><i class="fas fa-industry"></i> Factory, Hosur</span>
           </div>
         </div>
         <div class="stars">★★★★★</div>
-        <p class="testi-txt">"DSR manages our 3-shift transport for 600+ employees across 12 routes. Real-time tracking gives us full confidence even at 2 AM shifts. 3 years of partnership and the professionalism has never wavered. Truly unmatched."</p>
+        <p class="testi-txt">"DSR manages our 3-shift transport for 500+ employees across multiple routes. The CCTV monitoring and RFID attendance tracking give us complete peace of mind. 4 years of partnership and the professionalism has never wavered. Truly unmatched."</p>
       </div>
     </div>
   </div>
@@ -1268,7 +1453,7 @@
 <!-- ════════════════════════════════════════════
      CONTACT / CORPORATE ENQUIRY
 ════════════════════════════════════════════ -->
-<section class="section" id="contact">
+<section class="section alt" id="contact">
   <div class="sec-inner">
     <div class="contact-wrap">
 
@@ -1284,41 +1469,61 @@
             <div class="cinfo-ico"><i class="fas fa-phone-alt"></i></div>
             <div>
               <span class="cinfo-lbl">Corporate Helpline</span>
-              <span class="cinfo-val"><a href="tel:+918019971305">+91 8019971305</a></span>
+              <div class="cinfo-val">
+                <a href="tel:+917558139995">+91 75581 39995</a><br>
+                <a href="tel:+917558188867" style="font-size:13px">+91 75581 88867</a><br>
+                <a href="tel:+917558164681" style="font-size:13px">+91 75581 64681</a>
+              </div>
             </div>
           </div>
           <div class="cinfo-item">
             <div class="cinfo-ico"><i class="fab fa-whatsapp"></i></div>
             <div>
               <span class="cinfo-lbl">WhatsApp</span>
-              <span class="cinfo-val"><a href="https://wa.me/+918019971305">+91 8019971305</a></span>
+              <span class="cinfo-val"><a href="https://wa.me/+917558139995">+91 75581 39995</a></span>
             </div>
           </div>
           <div class="cinfo-item">
             <div class="cinfo-ico"><i class="fas fa-envelope"></i></div>
             <div>
               <span class="cinfo-lbl">Email</span>
-              <span class="cinfo-val"><a href="mailto:info@dsrtoursandtravels.in">info@dsrtoursandtravels.in</a></span>
-            </div>
-          </div>
-          <div class="cinfo-item">
-            <div class="cinfo-ico"><i class="fas fa-map-marker-alt"></i></div>
-            <div>
-              <span class="cinfo-lbl">Office Address</span>
-              <span class="cinfo-val" style="font-size:13.5px">A-199, Hill Colony, Vanasthalipuram,<br>Hyderabad, Telangana 500070</span>
+              <span class="cinfo-val"><a href="mailto:admin@dsrgroups.in">admin@dsrgroups.in</a></span>
             </div>
           </div>
           <div class="cinfo-item">
             <div class="cinfo-ico"><i class="fas fa-clock"></i></div>
             <div>
               <span class="cinfo-lbl">Availability</span>
-              <span class="cinfo-val">24 / 7 — Always Available</span>
+              <span class="cinfo-val">24 / 7 — Round the Clock Operations</span>
             </div>
           </div>
         </div>
+
+        <!-- Offices -->
+        <div style="margin-top:24px">
+          <div class="sec-tag" style="margin-bottom:14px"><i class="fas fa-map-marker-alt"></i>&nbsp; Our Offices</div>
+          <div class="offices-grid">
+            <div class="office-card">
+              <div class="office-tag"><i class="fas fa-star"></i> Head Quarter</div>
+              <h4>Krishnagiri, Tamil Nadu</h4>
+              <p>NO T-13, SIDCO Industrial Estate,<br>Nearby Jaya Emission Testing Centre,<br>Krishnagiri – 635 001, Tamil Nadu</p>
+            </div>
+            <div class="office-card">
+              <div class="office-tag"><i class="fas fa-building"></i> Chennai</div>
+              <h4>Chennai, Tamil Nadu</h4>
+              <p>No 5/482, Ramakrishna Salai,<br>Appadurai Street, Mannivakkam,<br>Chennai – 600048, Tamil Nadu</p>
+            </div>
+            <div class="office-card">
+              <div class="office-tag"><i class="fas fa-location-dot"></i> Hosur</div>
+              <h4>Hosur, Tamil Nadu</h4>
+              <p>Shop No: 552, Maruthi Nagar,<br>Near Sivaranjani Hotel, Dharga,<br>Hosur – 635109, Tamil Nadu</p>
+            </div>
+          </div>
+        </div>
+
         <div class="cinfo-btns">
-          <a href="tel:+918019971305" class="btn-primary"><i class="fas fa-phone"></i> Call Now</a>
-          <a href="https://wa.me/+918019971305" class="btn-wa"
+          <a href="tel:+917558139995" class="btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+          <a href="https://wa.me/+917558139995" class="btn-wa"
              style="padding:13px 24px;border-radius:50px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;">
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
@@ -1358,17 +1563,18 @@
             <label>Primary Service Required</label>
             <select>
               <option>Daily Employee Transport</option>
-              <option>Executive / CXO Cabs</option>
+              <option>Executive / Premier Cabs</option>
               <option>Airport Transfers</option>
               <option>Monthly Fleet Rental</option>
-              <option>Corporate Event Transport</option>
+              <option>Shuttle / Nodal Services</option>
+              <option>Manpower Solutions</option>
               <option>Outstation Business Travel</option>
               <option>Multiple Services</option>
             </select>
           </div>
           <div class="fg">
-            <label>Pickup Area(s) / City Zones</label>
-            <input type="text" placeholder="e.g., HITEC City, Gachibowli, Secunderabad, Uppal" />
+            <label>Pickup Area(s) / City</label>
+            <input type="text" placeholder="e.g., Krishnagiri, Chennai, Hosur, Bangalore" />
           </div>
           <div class="fg">
             <label>Additional Requirements</label>
@@ -1392,21 +1598,18 @@
     <div class="foot-grid">
       <!-- Brand -->
       <div class="foot-brand">
-        <div class="logo">
-          <div class="logo-icon"><i class="fas fa-car"></i></div>
-          <div class="logo-text">
-            <span class="brand">DSR Tours</span>
-            <span class="sub">&amp; Travels</span>
-          </div>
+        <div class="foot-logo-wrap">
+          <img src="LOGO.jpeg" alt="DSR Groups" />
         </div>
         <p class="foot-desc">
-          Hyderabad's leading corporate cab and transport management company since 2017.
-          Trusted by 200+ companies across IT, BPO, manufacturing &amp; healthcare sectors.
+          Tamil Nadu's leading transport management company since 2015.
+          Serving manufacturing companies, IT parks, BPOs and enterprises across
+          Krishnagiri, Chennai &amp; Hosur. Your Wealth Is Our Success!
         </p>
         <div class="social-row">
           <a href="#" class="soc-btn"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="soc-btn"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/+918019971305" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://wa.me/+917558139995" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
           <a href="#" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
@@ -1415,10 +1618,10 @@
         <h4>Quick Links</h4>
         <ul class="foot-links">
           <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
           <li><a href="#solutions">Solutions</a></li>
-          <li><a href="#howitworks">How It Works</a></li>
           <li><a href="#fleet">Our Fleet</a></li>
-          <li><a href="#plans">Corporate Plans</a></li>
+          <li><a href="#technology">Technology</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -1428,10 +1631,10 @@
         <ul class="foot-links">
           <li><a href="#">Employee Transport</a></li>
           <li><a href="#">Executive Cabs</a></li>
+          <li><a href="#">Shuttle Services</a></li>
           <li><a href="#">Airport Transfers</a></li>
-          <li><a href="#">Monthly Fleet Rental</a></li>
-          <li><a href="#">Event Transportation</a></li>
-          <li><a href="#">Outstation Business</a></li>
+          <li><a href="#">Manpower Solutions</a></li>
+          <li><a href="#">Outstation Travel</a></li>
         </ul>
       </div>
       <!-- Contact -->
@@ -1439,38 +1642,43 @@
         <h4>Contact</h4>
         <ul class="foot-links">
           <li>
-            <a href="tel:+918019971305">
-              <i class="fas fa-phone" style="color:var(--yellow);width:14px"></i> +91 8019971305
+            <a href="tel:+917558139995">
+              <i class="fas fa-phone" style="color:var(--yellow);width:14px"></i> +91 75581 39995
             </a>
           </li>
           <li>
-            <a href="https://wa.me/+918019971305">
+            <a href="tel:+917558188867">
+              <i class="fas fa-phone" style="color:var(--yellow);width:14px"></i> +91 75581 88867
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/+917558139995">
               <i class="fab fa-whatsapp" style="color:#25D366;width:14px"></i> WhatsApp Us
             </a>
           </li>
           <li>
-            <a href="mailto:info@dsrtoursandtravels.in">
-              <i class="fas fa-envelope" style="color:var(--yellow);width:14px"></i> info@dsrtoursandtravels.in
+            <a href="mailto:admin@dsrgroups.in">
+              <i class="fas fa-envelope" style="color:var(--yellow);width:14px"></i> admin@dsrgroups.in
             </a>
           </li>
           <li>
             <a href="#" style="pointer-events:none;align-items:flex-start">
               <i class="fas fa-map-marker-alt" style="color:var(--yellow);width:14px;margin-top:3px"></i>
-              A-199, Hill Colony, Vanasthalipuram, Hyderabad 500070
+              HQ: Krishnagiri – 635 001,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tamil Nadu
             </a>
           </li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <p>© 2025 DSR Tours &amp; Travels. All Rights Reserved.</p>
-      <p><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a> &nbsp;|&nbsp; <a href="#">GST: 36XXXXX0000X1Z5</a></p>
+      <p>© 2025 DSR Groups. All Rights Reserved. | Est. 2015 | Founder: Mr. Ravivarmaa Durai</p>
+      <p><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></p>
     </div>
   </div>
 </footer>
 
 <!-- Floating WhatsApp -->
-<a href="https://wa.me/+918019971305" class="wa-float" target="_blank" title="Chat on WhatsApp">
+<a href="https://wa.me/+917558139995" class="wa-float" target="_blank" title="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
 <!-- Back to Top -->
