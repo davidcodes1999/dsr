@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSR Tours &amp; Travels — Corporate Cab &amp; Rental Services, Hyderabad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME VARIABLES
+    ═══════════════════════════════════════════ */
+    :root[data-theme="light"] {
+      --bg:          #ffffff;
+      --bg2:         #f6f7fb;
+      --bg3:         #eef0f7;
+      --card:        #ffffff;
+      --nav-bg:      rgba(255,255,255,0.93);
+      --txt:         #0d0d0d;
+      --txt2:        #444444;
+      --muted:       #888888;
+      --yellow:      #FFC300;
+      --yellow-d:    #e6af00;
+      --yellow-l:    rgba(255,195,0,0.12);
+      --yellow-glow: rgba(255,195,0,0.40);
+      --border:      #e5e7eb;
+      --shadow:      0 2px 20px rgba(0,0,0,0.07);
+      --shadow-h:    0 12px 40px rgba(0,0,0,0.13);
+      --input-bg:    #f4f5f7;
+      --hero-ol:     rgba(0,0,0,0.62);
+      --footer-bg:   #0a0a0a;
+      --tag-txt:     #a07800;
+    }
+    :root[data-theme="dark"] {
+      --bg:          #090909;
+      --bg2:         #111111;
+      --bg3:         #1a1a1a;
+      --card:        #181818;
+      --nav-bg:      rgba(9,9,9,0.93);
+      --txt:         #f0f0f0;
+      --txt2:        #b8b8b8;
+      --muted:       #666666;
+      --yellow:      #FFC300;
+      --yellow-d:    #e6af00;
+      --yellow-l:    rgba(255,195,0,0.11);
+      --yellow-glow: rgba(255,195,0,0.25);
+      --border:      #272727;
+      --shadow:      0 2px 20px rgba(0,0,0,0.55);
+      --shadow-h:    0 12px 40px rgba(255,195,0,0.10);
+      --input-bg:    #222222;
+      --hero-ol:     rgba(0,0,0,0.73);
+      --footer-bg:   #030303;
+      --tag-txt:     #FFC300;
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE RESET
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Poppins',sans-serif;
+      background:var(--bg); color:var(--txt);
+      transition:background .3s, color .3s;
+      overflow-x:hidden;
+    }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:'Poppins',sans-serif; cursor:pointer; }
+    input, select, textarea {
+      font-family:'Poppins',sans-serif; background:var(--input-bg);
+      color:var(--txt); border:1.5px solid var(--border);
+      border-radius:10px; padding:11px 14px; font-size:14px;
+      width:100%; outline:none;
+      transition:border-color .2s, box-shadow .2s, background .3s;
+    }
+    input::placeholder, textarea::placeholder { color:var(--muted); }
+    input:focus, select:focus, textarea:focus {
+      border-color:var(--yellow);
+      box-shadow:0 0 0 3px var(--yellow-l);
+    }
+    select option { background:var(--card); }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:var(--bg2); }
+    ::-webkit-scrollbar-thumb { background:var(--yellow); border-radius:3px; }
+
+    /* ═══════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════ */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background:var(--nav-bg);
+      backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      transition:background .3s, box-shadow .3s;
+    }
+    .navbar.scrolled { box-shadow:var(--shadow); }
+    .nav-inner {
+      max-width:1300px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      height:68px; padding:0 24px;
+    }
+    .logo { display:flex; align-items:center; gap:10px; }
+    .logo-icon {
+      width:40px; height:40px; background:var(--yellow);
+      border-radius:10px; display:flex; align-items:center;
+      justify-content:center; font-size:18px; color:#000; flex-shrink:0;
+    }
+    .logo-text { display:flex; flex-direction:column; line-height:1.15; }
+    .logo-text .brand { font-size:17px; font-weight:800; color:var(--txt); }
+    .logo-text .sub   { font-size:10px; color:var(--yellow); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
+    .nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+    .nav-links a {
+      font-size:13px; font-weight:500; color:var(--txt2);
+      padding:7px 12px; border-radius:8px; transition:color .2s, background .2s;
+    }
+    .nav-links a:hover { color:var(--yellow); background:var(--yellow-l); }
+    .nav-right { display:flex; align-items:center; gap:10px; }
+    .nav-phone {
+      display:flex; align-items:center; gap:6px;
+      font-size:13px; font-weight:600; color:var(--txt2);
+      border:1.5px solid var(--border); padding:7px 14px; border-radius:50px;
+      transition:border-color .2s, color .2s;
+    }
+    .nav-phone:hover { border-color:var(--yellow); color:var(--yellow); }
+    .nav-phone i { color:var(--yellow); }
+    .nav-book {
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--yellow); color:#000; font-size:13px; font-weight:700;
+      padding:9px 18px; border-radius:50px; border:none;
+      transition:background .2s, transform .2s, box-shadow .2s;
+    }
+    .nav-book:hover { background:var(--yellow-d); transform:translateY(-1px); box-shadow:0 5px 18px var(--yellow-glow); }
+    /* Theme toggle */
+    .theme-wrap { display:flex; align-items:center; gap:6px; }
+    .theme-icon { font-size:14px; color:var(--muted); }
+    .toggle {
+      position:relative; width:44px; height:24px;
+      background:var(--border); border-radius:12px;
+      border:none; cursor:pointer; transition:background .3s;
+    }
+    .toggle.on { background:var(--yellow); }
+    .toggle::after {
+      content:''; position:absolute; width:18px; height:18px;
+      background:#fff; border-radius:50%; top:3px; left:3px;
+      transition:transform .3s; box-shadow:0 1px 4px rgba(0,0,0,.25);
+    }
+    .toggle.on::after { transform:translateX(20px); }
+    /* Hamburger */
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:4px; cursor:pointer; }
+    .hamburger span { width:22px; height:2px; background:var(--txt); border-radius:2px; transition:all .3s; }
+    /* Mobile menu */
+    .mob-menu {
+      display:none; position:fixed; top:68px; left:0; right:0;
+      background:var(--nav-bg); backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      padding:16px 24px 20px; z-index:999;
+    }
+    .mob-menu.open { display:block; }
+    .mob-menu ul { list-style:none; display:flex; flex-direction:column; gap:2px; }
+    .mob-menu a {
+      display:block; color:var(--txt2); font-size:15px; font-weight:500;
+      padding:10px 14px; border-radius:8px; transition:color .2s, background .2s;
+    }
+    .mob-menu a:hover { color:var(--yellow); background:var(--yellow-l); }
+    .mob-footer { margin-top:14px; padding-top:14px; border-top:1px solid var(--border); display:flex; gap:10px; }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS (GLOBAL)
+    ═══════════════════════════════════════════ */
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--yellow); color:#000; font-size:15px; font-weight:700;
+      padding:13px 28px; border-radius:50px; border:none;
+      transition:background .2s, transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { background:var(--yellow-d); transform:translateY(-2px); box-shadow:0 8px 28px var(--yellow-glow); }
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:#fff; font-size:15px; font-weight:600;
+      padding:13px 28px; border-radius:50px; border:2px solid rgba(255,255,255,.35);
+      transition:border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color:var(--yellow); color:var(--yellow); }
+    .btn-call {
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      padding:10px; border-radius:10px; border:1.5px solid var(--border);
+      background:transparent; color:var(--txt); font-size:13px; font-weight:600;
+      transition:border-color .2s, color .2s;
+    }
+    .btn-call:hover { border-color:var(--yellow); color:var(--yellow); }
+    .btn-wa {
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      padding:10px; border-radius:10px; border:none;
+      background:#25D366; color:#fff; font-size:13px; font-weight:600;
+      transition:background .2s, transform .2s;
+    }
+    .btn-wa:hover { background:#1ebe5d; transform:translateY(-1px); }
+    .btn-submit {
+      width:100%; padding:13px; background:var(--yellow); color:#000;
+      border:none; border-radius:10px; font-size:14px; font-weight:700;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition:background .2s, transform .2s, box-shadow .2s; margin-top:16px;
+    }
+    .btn-submit:hover { background:var(--yellow-d); transform:translateY(-1px); box-shadow:0 5px 20px var(--yellow-glow); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      min-height:100vh; position:relative;
+      display:flex; align-items:center; overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&q=75') center/cover no-repeat;
+    }
+    .hero-ol   { position:absolute; inset:0; background:var(--hero-ol); }
+    .hero-bar  { position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--yellow); }
+    .particles { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .particle  {
+      position:absolute; border-radius:50%; background:var(--yellow); opacity:.4;
+      animation:pfloat 5s ease-in-out infinite;
+    }
+    @keyframes pfloat {
+      0%,100% { transform:translateY(0); opacity:.4; }
+      50%      { transform:translateY(-22px); opacity:.8; }
+    }
+    .hero-inner {
+      position:relative; z-index:2;
+      max-width:1300px; margin:0 auto; padding:120px 24px 80px;
+      width:100%; display:grid; grid-template-columns:1fr 440px; gap:56px; align-items:center;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(255,195,0,.15); border:1px solid rgba(255,195,0,.35);
+      color:var(--yellow); padding:5px 16px; border-radius:50px;
+      font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    .hero h1 { font-size:clamp(28px,4vw,54px); font-weight:900; color:#fff; line-height:1.15; margin-bottom:18px; }
+    .hero h1 span { color:var(--yellow); }
+    .hero-desc { font-size:16px; color:rgba(255,255,255,.78); line-height:1.75; margin-bottom:28px; max-width:500px; }
+    .hero-cta  { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:34px; }
+    .trust-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .trust-badge {
+      display:flex; align-items:center; gap:7px;
+      background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.15);
+      backdrop-filter:blur(8px); padding:7px 14px; border-radius:50px;
+      font-size:12px; font-weight:600; color:rgba(255,255,255,.9);
+    }
+    .trust-badge i { color:var(--yellow); }
+    /* Quote card */
+    .quote-card {
+      background:var(--card); border-radius:20px; padding:26px 24px;
+      box-shadow:0 24px 64px rgba(0,0,0,.4); border:1px solid var(--border);
+    }
+    .qcard-hdr {
+      display:flex; align-items:center; gap:10px;
+      padding-bottom:16px; margin-bottom:18px; border-bottom:1px solid var(--border);
+    }
+    .qcard-hdr .qi {
+      width:38px; height:38px; background:var(--yellow); border-radius:9px;
+      display:flex; align-items:center; justify-content:center; font-size:16px; color:#000;
+    }
+    .qcard-hdr h3 { font-size:17px; font-weight:800; color:var(--txt); margin-bottom:2px; }
+    .qcard-hdr p  { font-size:11px; color:var(--muted); }
+    .fg { margin-bottom:12px; }
+    .fg label { display:block; font-size:11.5px; font-weight:600; color:var(--txt2); margin-bottom:5px; }
+    .f2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    /* ═══════════════════════════════════════════
+       SECTIONS COMMON
+    ═══════════════════════════════════════════ */
+    .section { padding:80px 24px; }
+    .section.alt { background:var(--bg2); }
+    .sec-inner { max-width:1300px; margin:0 auto; }
+    .sec-hdr   { text-align:center; margin-bottom:52px; }
+    .sec-tag   {
+      display:inline-flex; align-items:center; gap:7px;
+      background:var(--yellow-l); color:var(--tag-txt);
+      padding:5px 14px; border-radius:50px;
+      font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .sec-title  { font-size:clamp(24px,3vw,38px); font-weight:800; color:var(--txt); line-height:1.25; margin-bottom:12px; }
+    .sec-title span { color:var(--yellow); }
+    .sec-desc   { font-size:15px; color:var(--muted); max-width:540px; margin:0 auto; line-height:1.7; }
+    /* Fade-in */
+    .fi { opacity:0; transform:translateY(26px); transition:opacity .6s ease, transform .6s ease; }
+    .fi.vis { opacity:1; transform:none; }
+    .fi.d1{transition-delay:.07s} .fi.d2{transition-delay:.14s}
+    .fi.d3{transition-delay:.21s} .fi.d4{transition-delay:.28s}
+    .fi.d5{transition-delay:.35s} .fi.d6{transition-delay:.42s}
+
+    /* ═══════════════════════════════════════════
+       SOLUTIONS GRID
+    ═══════════════════════════════════════════ */
+    .sol-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:22px; }
+    .sol-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:26px; position:relative; overflow:hidden;
+      transition:transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .sol-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:var(--yellow); transform:scaleX(0); transform-origin:left; transition:transform .3s;
+    }
+    .sol-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-h); border-color:var(--yellow); }
+    .sol-card:hover::before { transform:scaleX(1); }
+    .sol-ico {
+      width:52px; height:52px; background:var(--yellow-l); border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; color:var(--yellow); margin-bottom:15px;
+      transition:background .3s, color .3s;
+    }
+    .sol-card:hover .sol-ico { background:var(--yellow); color:#000; }
+    .sol-card h3 { font-size:16px; font-weight:700; color:var(--txt); margin-bottom:8px; }
+    .sol-card p  { font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:14px; }
+    .sol-link { display:inline-flex; align-items:center; gap:6px; color:var(--yellow); font-size:13px; font-weight:600; transition:gap .2s; }
+    .sol-link:hover { gap:10px; }
+
+    /* ═══════════════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════════════ */
+    .how-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;
+    }
+    .how-grid::before {
+      content:''; position:absolute; top:27px; left:12%; right:12%; height:2px;
+      background:linear-gradient(90deg, var(--yellow), var(--yellow-d)); opacity:.3;
+    }
+    .how-step { text-align:center; padding:0 20px; }
+    .step-num {
+      width:56px; height:56px; border-radius:50%; background:var(--yellow); color:#000;
+      display:flex; align-items:center; justify-content:center;
+      font-size:20px; font-weight:900; margin:0 auto 16px; position:relative; z-index:1;
+      box-shadow:0 4px 14px var(--yellow-glow);
+    }
+    .how-step h3 { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:7px; }
+    .how-step p  { font-size:13px; color:var(--muted); line-height:1.6; }
+
+    /* ═══════════════════════════════════════════
+       STATS BAND
+    ═══════════════════════════════════════════ */
+    .stats-band { background:var(--yellow); padding:52px 24px; }
+    .stats-inner {
+      max-width:1300px; margin:0 auto;
+      display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+    }
+    .sstat { text-align:center; }
+    .sstat .n { font-size:44px; font-weight:900; color:#000; display:block; line-height:1; margin-bottom:6px; }
+    .sstat .l { font-size:13px; font-weight:600; color:rgba(0,0,0,.55); }
+
+    /* ═══════════════════════════════════════════
+       FLEET WITH PHOTOS
+    ═══════════════════════════════════════════ */
+    .fleet-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; }
+    .fleet-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      overflow:hidden; transition:transform .3s, box-shadow .3s;
+    }
+    .fleet-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-h); }
+    .fleet-img {
+      height:210px; overflow:hidden; background:var(--bg3); position:relative;
+    }
+    .fleet-img img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .4s ease;
+    }
+    .fleet-card:hover .fleet-img img { transform:scale(1.07); }
+    .fleet-badge {
+      position:absolute; top:12px; right:12px; z-index:1;
+      background:var(--yellow); color:#000;
+      font-size:10px; font-weight:800; padding:4px 10px;
+      border-radius:50px; text-transform:uppercase; letter-spacing:.5px;
+    }
+    .fleet-body { padding:20px; }
+    .fleet-body h4 { font-size:16px; font-weight:700; color:var(--txt); margin-bottom:10px; }
+    .fleet-tags { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:16px; }
+    .ftag {
+      display:flex; align-items:center; gap:5px;
+      background:var(--yellow-l); color:var(--tag-txt);
+      font-size:11px; font-weight:600; padding:4px 10px; border-radius:50px;
+    }
+    .fleet-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+    /* ═══════════════════════════════════════════
+       CORPORATE PLANS
+    ═══════════════════════════════════════════ */
+    .plans-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+    .plan-card {
+      background:var(--card); border:2px solid var(--border); border-radius:20px;
+      padding:32px 26px; text-align:center; position:relative;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .plan-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-h); }
+    .plan-card.featured { border-color:var(--yellow); }
+    .plan-card.featured::before {
+      content:'MOST POPULAR'; position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+      background:var(--yellow); color:#000; font-size:10px; font-weight:800;
+      padding:4px 18px; border-radius:50px; letter-spacing:1px;
+    }
+    .plan-name  { font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+    .plan-ico   { font-size:36px; margin-bottom:14px; }
+    .plan-title { font-size:22px; font-weight:800; color:var(--txt); margin-bottom:18px; }
+    .plan-list  { list-style:none; margin-bottom:26px; text-align:left; }
+    .plan-list li {
+      display:flex; align-items:center; gap:9px;
+      font-size:13px; color:var(--txt2); padding:6px 0; border-bottom:1px solid var(--border);
+    }
+    .plan-list li:last-child { border-bottom:none; }
+    .plan-list li i { font-size:12px; flex-shrink:0; }
+    .plan-cta {
+      width:100%; padding:12px; border-radius:10px;
+      font-size:14px; font-weight:700;
+      border:2px solid var(--yellow); color:var(--yellow);
+      background:transparent; transition:background .2s, color .2s;
+    }
+    .plan-cta:hover, .plan-card.featured .plan-cta { background:var(--yellow); color:#000; }
+
+    /* ═══════════════════════════════════════════
+       WHY SECTION
+    ═══════════════════════════════════════════ */
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:20px; }
+    .why-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:24px 20px; text-align:center;
+      transition:transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .why-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-h); border-color:var(--yellow); }
+    .why-ico {
+      width:54px; height:54px; background:var(--yellow-l); border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; color:var(--yellow); margin:0 auto 12px;
+      transition:background .3s, color .3s;
+    }
+    .why-card:hover .why-ico { background:var(--yellow); color:#000; }
+    .why-card h3 { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:6px; }
+    .why-card p  { font-size:13px; color:var(--muted); line-height:1.6; }
+
+    /* ═══════════════════════════════════════════
+       ROUTES
+    ═══════════════════════════════════════════ */
+    .routes-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:11px; }
+    .route-card {
+      display:flex; align-items:center; gap:10px;
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      padding:13px 15px; transition:border-color .2s, transform .2s, background .2s;
+    }
+    .route-card:hover { border-color:var(--yellow); background:var(--yellow-l); transform:translateX(4px); }
+    .route-ico {
+      width:32px; height:32px; background:var(--yellow-l); border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; color:var(--yellow); flex-shrink:0;
+    }
+    .route-info { flex:1; }
+    .rn { font-size:13px; font-weight:600; color:var(--txt); display:block; }
+    .rd { font-size:11px; color:var(--muted); }
+    .rarr { font-size:11px; color:var(--muted); transition:color .2s; }
+    .route-card:hover .rarr { color:var(--yellow); }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════════ */
+    .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:22px; }
+    .testi-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:26px; transition:transform .3s, box-shadow .3s;
+    }
+    .testi-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-h); }
+    .testi-top  { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+    .testi-av   {
+      width:46px; height:46px; background:var(--yellow); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; font-weight:800; color:#000; flex-shrink:0;
+    }
+    .testi-meta .name { font-size:14px; font-weight:700; color:var(--txt); display:block; }
+    .testi-meta .desg { font-size:12px; color:var(--muted); }
+    .testi-co {
+      display:inline-flex; align-items:center; gap:5px;
+      background:var(--yellow-l); color:var(--tag-txt);
+      font-size:11px; font-weight:600; padding:3px 9px; border-radius:50px; margin-top:3px;
+    }
+    .stars    { color:var(--yellow); font-size:14px; letter-spacing:2px; margin-bottom:12px; }
+    .testi-txt{ font-size:13.5px; color:var(--txt2); line-height:1.72; font-style:italic; }
+
+    /* ═══════════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════════ */
+    .contact-wrap { display:grid; grid-template-columns:1fr 1.5fr; gap:60px; align-items:start; }
+    .cinfo-hdr h2 { font-size:clamp(22px,3vw,32px); font-weight:800; color:var(--txt); margin-bottom:12px; }
+    .cinfo-hdr p  { font-size:15px; color:var(--muted); line-height:1.7; margin-bottom:28px; }
+    .cinfo-list { display:flex; flex-direction:column; gap:15px; }
+    .cinfo-item { display:flex; align-items:center; gap:13px; }
+    .cinfo-ico  {
+      width:44px; height:44px; background:var(--yellow-l); border-radius:12px;
+      display:flex; align-items:center; justify-content:center; font-size:17px; color:var(--yellow); flex-shrink:0;
+    }
+    .cinfo-lbl { font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:1px; display:block; }
+    .cinfo-val { font-size:14px; font-weight:600; color:var(--txt); }
+    .cinfo-val a { color:var(--txt); transition:color .2s; }
+    .cinfo-val a:hover { color:var(--yellow); }
+    .cinfo-btns { display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+    .form-box {
+      background:var(--card); border:1px solid var(--border); border-radius:20px; padding:32px;
+    }
+    .form-box h3 { font-size:20px; font-weight:800; color:var(--txt); margin-bottom:4px; }
+    .form-box > p { font-size:13px; color:var(--muted); margin-bottom:20px; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer { background:var(--footer-bg); padding:60px 24px 26px; }
+    .foot-inner { max-width:1300px; margin:0 auto; }
+    .foot-grid {
+      display:grid; grid-template-columns:1.8fr 1fr 1fr 1.5fr; gap:40px; margin-bottom:44px;
+    }
+    .foot-brand .brand { color:#fff; }
+    .foot-brand .sub   { color:var(--yellow); }
+    .foot-desc { font-size:13px; color:#555; line-height:1.7; margin-top:12px; max-width:260px; }
+    .social-row { display:flex; gap:8px; margin-top:16px; }
+    .soc-btn {
+      width:34px; height:34px; background:rgba(255,255,255,.07); border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      color:#666; font-size:14px; transition:background .2s, color .2s;
+    }
+    .soc-btn:hover { background:var(--yellow); color:#000; }
+    .foot-col h4 { font-size:12px; font-weight:700; color:#fff; margin-bottom:14px; letter-spacing:.8px; text-transform:uppercase; }
+    .foot-links { list-style:none; display:flex; flex-direction:column; gap:9px; }
+    .foot-links a {
+      font-size:13px; color:#555; transition:color .2s;
+      display:flex; align-items:center; gap:5px;
+    }
+    .foot-links a::before { content:'›'; color:var(--yellow); opacity:0; transition:opacity .2s; }
+    .foot-links a:hover { color:var(--yellow); }
+    .foot-links a:hover::before { opacity:1; }
+    .foot-bottom {
+      padding-top:20px; border-top:1px solid rgba(255,255,255,.06);
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+    }
+    .foot-bottom p { font-size:12px; color:#444; }
+    .foot-bottom a { color:var(--yellow); }
+
+    /* ═══════════════════════════════════════════
+       FLOATING + TOAST
+    ═══════════════════════════════════════════ */
+    .wa-float {
+      position:fixed; bottom:28px; right:28px; width:54px; height:54px;
+      background:#25D366; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:26px; color:#fff; z-index:998;
+      box-shadow:0 4px 20px rgba(37,211,102,.4);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .wa-float:hover { transform:scale(1.1); }
+    .btt {
+      position:fixed; bottom:94px; right:28px;
+      width:44px; height:44px; background:var(--yellow); border-radius:50%; border:none;
+      display:flex; align-items:center; justify-content:center;
+      font-size:15px; color:#000; z-index:997;
+      box-shadow:0 4px 14px var(--yellow-glow);
+      opacity:0; pointer-events:none; transition:opacity .3s, transform .2s;
+    }
+    .btt.vis { opacity:1; pointer-events:all; }
+    .btt:hover { transform:translateY(-3px); }
+    .toast {
+      position:fixed; bottom:28px; left:50%; z-index:9999;
+      transform:translateX(-50%) translateY(90px);
+      background:var(--card); border:1px solid var(--border);
+      border-left:4px solid var(--yellow);
+      padding:13px 22px; border-radius:12px;
+      font-size:14px; font-weight:500; color:var(--txt);
+      box-shadow:var(--shadow);
+      display:flex; align-items:center; gap:10px;
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+      white-space:nowrap;
+    }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+    .toast i { color:var(--yellow); font-size:18px; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media(max-width:1060px) {
+      .stats-inner { grid-template-columns:repeat(2,1fr); }
+      .foot-grid   { grid-template-columns:1fr 1fr; }
+      .how-grid    { grid-template-columns:repeat(2,1fr); gap:32px; }
+      .how-grid::before { display:none; }
+    }
+    @media(max-width:860px) {
+      .hero-inner   { grid-template-columns:1fr; text-align:center; }
+      .hero-cta     { justify-content:center; }
+      .trust-row    { justify-content:center; }
+      .contact-wrap { grid-template-columns:1fr; }
+    }
+    @media(max-width:768px) {
+      .nav-links, .nav-phone { display:none; }
+      .hamburger { display:flex; }
+    }
+    @media(max-width:540px) {
+      .section      { padding:60px 16px; }
+      .stats-inner  { grid-template-columns:repeat(2,1fr); }
+      .how-grid     { grid-template-columns:1fr 1fr; }
+      .foot-grid    { grid-template-columns:1fr; }
+      .foot-bottom  { flex-direction:column; text-align:center; }
+      .f2           { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <div class="logo-icon"><i class="fas fa-car"></i></div>
+      <div class="logo-text">
+        <span class="brand">DSR Tours</span>
+        <span class="sub">&amp; Travels</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#howitworks">How It Works</a></li>
+      <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#plans">Plans</a></li>
+      <li><a href="#routes">Routes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="theme-wrap">
+        <i class="fas fa-sun theme-icon" id="themeIcon"></i>
+        <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
+      </div>
+      <a href="tel:+918019971305" class="nav-phone">
+        <i class="fas fa-phone"></i> 8019971305
+      </a>
+      <a href="#contact" class="nav-book">
+        <i class="fas fa-briefcase"></i> Corporate Enquiry
+      </a>
+      <div class="hamburger" id="hbg">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-menu" id="mobMenu">
+  <ul>
+    <li><a href="#solutions"  onclick="closeMenu()">Solutions</a></li>
+    <li><a href="#howitworks" onclick="closeMenu()">How It Works</a></li>
+    <li><a href="#fleet"      onclick="closeMenu()">Fleet</a></li>
+    <li><a href="#plans"      onclick="closeMenu()">Plans</a></li>
+    <li><a href="#routes"     onclick="closeMenu()">Routes</a></li>
+    <li><a href="#contact"    onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <div class="mob-footer">
+    <a href="tel:+918019971305" class="btn-primary" style="flex:1;justify-content:center;border-radius:50px;">
+      <i class="fas fa-phone"></i> Call Us
+    </a>
+    <a href="https://wa.me/+918019971305" class="btn-wa" style="flex:1;border-radius:50px;padding:13px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-ol"></div>
+  <div class="hero-bar"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-inner">
+    <!-- Left: Text -->
+    <div>
+      <div class="hero-badge">
+        <i class="fas fa-building"></i>&nbsp; Hyderabad's #1 Corporate Cab Partner
+      </div>
+      <h1>Corporate Travel,<br><span>Managed Perfectly.</span></h1>
+      <p class="hero-desc">
+        End-to-end employee transport, executive rentals &amp; fleet management under one corporate account.
+        GST invoicing, dedicated account manager, and 24/7 support — designed for serious businesses.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">
+          <i class="fas fa-briefcase"></i> Get Corporate Quote
+        </a>
+        <a href="tel:+918019971305" class="btn-ghost">
+          <i class="fas fa-phone"></i> Call Sales
+        </a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-badge"><i class="fas fa-file-invoice"></i> GST Invoicing</div>
+        <div class="trust-badge"><i class="fas fa-satellite-dish"></i> Live GPS</div>
+        <div class="trust-badge"><i class="fas fa-clock"></i> 24/7 Support</div>
+        <div class="trust-badge"><i class="fas fa-user-tie"></i> Dedicated Manager</div>
+      </div>
+    </div>
+
+    <!-- Right: Corporate Enquiry Form -->
+    <div class="quote-card" id="booking">
+      <div class="qcard-hdr">
+        <div class="qi"><i class="fas fa-briefcase"></i></div>
+        <div>
+          <h3>Corporate Quote Request</h3>
+          <p>We respond within 2 business hours</p>
+        </div>
+      </div>
+      <form id="bookingForm">
+        <div class="f2">
+          <div class="fg">
+            <label>Company Name</label>
+            <input type="text" placeholder="ABC Pvt. Ltd." required />
+          </div>
+          <div class="fg">
+            <label>Contact Person</label>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+        </div>
+        <div class="f2">
+          <div class="fg">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+          <div class="fg">
+            <label>Work Email</label>
+            <input type="email" placeholder="you@company.com" required />
+          </div>
+        </div>
+        <div class="f2">
+          <div class="fg">
+            <label>No. of Employees</label>
+            <select>
+              <option>10–50</option>
+              <option>51–200</option>
+              <option>201–500</option>
+              <option>500+</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Service Needed</label>
+            <select>
+              <option>Daily Employee Transport</option>
+              <option>Executive Cab Rental</option>
+              <option>Airport Transfers</option>
+              <option>Monthly Fleet Rental</option>
+              <option>Event Transportation</option>
+              <option>Outstation Business Trip</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Brief Requirement</label>
+          <textarea rows="2" placeholder="Shift timings, pickup areas, vehicle type preferences..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i> Submit Corporate Enquiry
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CORPORATE SOLUTIONS
+════════════════════════════════════════════ -->
+<section class="section alt" id="solutions">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-building"></i>&nbsp; Corporate Solutions</div>
+      <h2 class="sec-title">Everything Your <span>Business Needs</span></h2>
+      <p class="sec-desc">Flexible, scalable transport solutions built for IT parks, BPOs, manufacturing units, hospitals and enterprises of all sizes.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card fi d1">
+        <div class="sol-ico"><i class="fas fa-users"></i></div>
+        <h3>Employee Daily Transport</h3>
+        <p>Scheduled pickup &amp; drop for your entire workforce across multiple shifts. Fixed routes, real-time tracking, and monthly consolidated billing for easy accounting.</p>
+        <a href="#contact" class="sol-link">Get Proposal <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="sol-card fi d2">
+        <div class="sol-ico"><i class="fas fa-user-tie"></i></div>
+        <h3>Executive &amp; CXO Cabs</h3>
+        <p>Premium Innova Crysta and luxury sedans with uniformed chauffeurs for your leadership team, board members, and high-value clients. On-demand or pre-scheduled.</p>
+        <a href="#contact" class="sol-link">Book Executive Cab <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="sol-card fi d3">
+        <div class="sol-ico"><i class="fas fa-plane-arrival"></i></div>
+        <h3>Corporate Airport Transfers</h3>
+        <p>Reliable airport pickups &amp; drops at Rajiv Gandhi International Airport with flight-tracking. No extra charge for delays. Available 24/7 for your team.</p>
+        <a href="#contact" class="sol-link">Schedule Transfer <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="sol-card fi d4">
+        <div class="sol-ico"><i class="fas fa-calendar-alt"></i></div>
+        <h3>Monthly Fleet Rental</h3>
+        <p>Dedicated vehicles assigned exclusively to your company monthly. Fixed cost, zero surge pricing, dedicated driver per vehicle, and priority maintenance support.</p>
+        <a href="#plans" class="sol-link">View Plans <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="sol-card fi d5">
+        <div class="sol-ico"><i class="fas fa-star"></i></div>
+        <h3>Corporate Event Transport</h3>
+        <p>Conferences, offsites, team outings, client events — bulk vehicle deployment with a dedicated on-ground coordinator managing logistics for the entire event day.</p>
+        <a href="#contact" class="sol-link">Plan Your Event <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="sol-card fi d6">
+        <div class="sol-ico"><i class="fas fa-route"></i></div>
+        <h3>Outstation Business Travel</h3>
+        <p>Intercity travel to Vijayawada, Bangalore, Chennai &amp; 100+ routes with professional drivers, one-way or round trip. Corporate pricing with monthly invoicing.</p>
+        <a href="#routes" class="sol-link">Explore Routes <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════ -->
+<section class="section" id="howitworks">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-cogs"></i>&nbsp; Simple Onboarding</div>
+      <h2 class="sec-title">Up &amp; Running in <span>4 Simple Steps</span></h2>
+      <p class="sec-desc">No paperwork maze, no long setup times. Your corporate transport goes live within 48 hours of approval.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step fi d1">
+        <div class="step-num">1</div>
+        <h3>Submit Enquiry</h3>
+        <p>Fill the quick corporate form. Share team size, shift timings and pickup areas.</p>
+      </div>
+      <div class="how-step fi d2">
+        <div class="step-num">2</div>
+        <h3>Custom Proposal</h3>
+        <p>Receive a tailored transport plan with routes, vehicle types and transparent pricing within 2 hours.</p>
+      </div>
+      <div class="how-step fi d3">
+        <div class="step-num">3</div>
+        <h3>Fleet Deployed</h3>
+        <p>Dedicated vehicles and verified drivers assigned. Account manager overseeing your account daily.</p>
+      </div>
+      <div class="how-step fi d4">
+        <div class="step-num">4</div>
+        <h3>GST Billing &amp; Reports</h3>
+        <p>Consolidated monthly GST invoices and detailed trip reports delivered automatically to your finance team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     STATS
+════════════════════════════════════════════ -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="sstat fi d1">
+      <span class="n" data-target="200" data-suffix="+">0+</span>
+      <span class="l">Corporate Clients</span>
+    </div>
+    <div class="sstat fi d2">
+      <span class="n" data-target="50000" data-suffix="+">0+</span>
+      <span class="l">Trips Completed / Year</span>
+    </div>
+    <div class="sstat fi d3">
+      <span class="n" data-target="100" data-suffix="+">0+</span>
+      <span class="l">Fleet Vehicles</span>
+    </div>
+    <div class="sstat fi d4">
+      <span class="n" data-target="8" data-suffix="">0</span>
+      <span class="l">Years in Business</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     FLEET WITH PHOTOS
+════════════════════════════════════════════ -->
+<section class="section alt" id="fleet">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-car-side"></i>&nbsp; Our Fleet</div>
+      <h2 class="sec-title">A Fleet Built for <span>Business</span></h2>
+      <p class="sec-desc">From compact sedans for executives to 50-seater buses for large teams — every vehicle is fully AC, GPS-tracked and professionally maintained.</p>
+    </div>
+
+    <div class="fleet-grid">
+
+      <!-- Sedan -->
+      <div class="fleet-card fi d1">
+        <div class="fleet-img">
+          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80"
+               alt="Swift DZire / Toyota Etios — Corporate Sedan" loading="lazy" />
+          <div class="fleet-badge">Sedan</div>
+        </div>
+        <div class="fleet-body">
+          <h4>Swift DZire / Toyota Etios</h4>
+          <div class="fleet-tags">
+            <span class="ftag"><i class="fas fa-users"></i> 4 Seater</span>
+            <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
+            <span class="ftag"><i class="fas fa-briefcase"></i> Corporate</span>
+          </div>
+          <div class="fleet-actions">
+            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MPV / Ertiga -->
+      <div class="fleet-card fi d2">
+        <div class="fleet-img">
+          <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80"
+               alt="Suzuki Ertiga — MPV for small groups" loading="lazy" />
+          <div class="fleet-badge">MPV</div>
+        </div>
+        <div class="fleet-body">
+          <h4>Suzuki Ertiga / Marazzo</h4>
+          <div class="fleet-tags">
+            <span class="ftag"><i class="fas fa-users"></i> 6 Seater</span>
+            <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
+          </div>
+          <div class="fleet-actions">
+            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUV / Innova -->
+      <div class="fleet-card fi d3">
+        <div class="fleet-img">
+          <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80"
+               alt="Toyota Innova Crysta — Executive SUV" loading="lazy" />
+          <div class="fleet-badge">Executive SUV</div>
+        </div>
+        <div class="fleet-body">
+          <h4>Toyota Innova / Innova Crysta</h4>
+          <div class="fleet-tags">
+            <span class="ftag"><i class="fas fa-users"></i> 7 Seater</span>
+            <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-star"></i> Luxury</span>
+            <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
+          </div>
+          <div class="fleet-actions">
+            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tempo Traveller -->
+      <div class="fleet-card fi d4">
+        <div class="fleet-img">
+          <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&q=80"
+               alt="Force Urbania Tempo Traveller — 12 to 17 seater" loading="lazy" />
+          <div class="fleet-badge">Tempo / Van</div>
+        </div>
+        <div class="fleet-body">
+          <h4>Force Urbania / Tempo Traveller</h4>
+          <div class="fleet-tags">
+            <span class="ftag"><i class="fas fa-users"></i> 12–17 Seats</span>
+            <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
+          </div>
+          <div class="fleet-actions">
+            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Bus -->
+      <div class="fleet-card fi d5">
+        <div class="fleet-img">
+          <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80"
+               alt="Mini Bus 22 to 30 Seater" loading="lazy" />
+          <div class="fleet-badge">Mini Bus</div>
+        </div>
+        <div class="fleet-body">
+          <h4>Mini Bus — 18 to 30 Seater</h4>
+          <div class="fleet-tags">
+            <span class="ftag"><i class="fas fa-users"></i> 18–30 Seats</span>
+            <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
+          </div>
+          <div class="fleet-actions">
+            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Bus -->
+      <div class="fleet-card fi d6">
+        <div class="fleet-img">
+          <img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&q=80"
+               alt="Full Size Bus 30 to 50 Seater" loading="lazy" />
+          <div class="fleet-badge">Full Bus</div>
+        </div>
+        <div class="fleet-body">
+          <h4>Full-Size Bus — 30 to 50 Seater</h4>
+          <div class="fleet-tags">
+            <span class="ftag"><i class="fas fa-users"></i> 30–50 Seats</span>
+            <span class="ftag"><i class="fas fa-snowflake"></i> Full AC</span>
+            <span class="ftag"><i class="fas fa-map-marker-alt"></i> GPS</span>
+          </div>
+          <div class="fleet-actions">
+            <a href="tel:+918019971305"          class="btn-call"><i class="fas fa-phone"></i> Call</a>
+            <a href="https://wa.me/+918019971305" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CORPORATE PLANS
+════════════════════════════════════════════ -->
+<section class="section" id="plans">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-layer-group"></i>&nbsp; Pricing Plans</div>
+      <h2 class="sec-title">Transparent <span>Corporate Plans</span></h2>
+      <p class="sec-desc">Flexible monthly plans for every company size. All plans include GST invoicing, GPS tracking and a dedicated account manager.</p>
+    </div>
+    <div class="plans-grid">
+
+      <div class="plan-card fi d1">
+        <div class="plan-name">Starter</div>
+        <div class="plan-ico">🚗</div>
+        <div class="plan-title">Small Business</div>
+        <ul class="plan-list">
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Up to 5 Vehicles (Sedan / MPV)</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Up to 50 Employees</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 2 Shifts per Day</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Basic GPS Tracking</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Monthly GST Invoice</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Phone &amp; WhatsApp Support</li>
+          <li><i class="fas fa-times-circle" style="color:var(--muted)"></i> Dedicated Account Manager</li>
+        </ul>
+        <button class="plan-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+
+      <div class="plan-card featured fi d2">
+        <div class="plan-name">Professional</div>
+        <div class="plan-ico">🚐</div>
+        <div class="plan-title">Mid-Size Company</div>
+        <ul class="plan-list">
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 6–20 Vehicles (Any Type)</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 50–300 Employees</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Unlimited Shift Schedules</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Live GPS + Trip Reports</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Consolidated Monthly Invoice</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Dedicated Account Manager</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 24/7 Emergency Support</li>
+        </ul>
+        <button class="plan-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Proposal</button>
+      </div>
+
+      <div class="plan-card fi d3">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-ico">🚌</div>
+        <div class="plan-title">Large Enterprise</div>
+        <ul class="plan-list">
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 20+ Vehicles — Full Fleet</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> 300+ Employees — Any Scale</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Custom Route Optimization</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Branded Vehicle Wraps</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> On-site Fleet Coordinator</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> HRMS / ERP Integration</li>
+          <li><i class="fas fa-check-circle" style="color:var(--yellow)"></i> Priority 24/7 SLA Support</li>
+        </ul>
+        <button class="plan-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Sales</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     WHY CORPORATE CLIENTS CHOOSE DSR
+════════════════════════════════════════════ -->
+<section class="section alt" id="why">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-trophy"></i>&nbsp; Our Advantage</div>
+      <h2 class="sec-title">Why 200+ Companies <span>Choose DSR</span></h2>
+      <p class="sec-desc">Not just a cab service — a complete corporate transport management partner built for operational excellence.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fi d1">
+        <div class="why-ico"><i class="fas fa-file-invoice-dollar"></i></div>
+        <h3>GST-Compliant Billing</h3>
+        <p>Proper GST invoices every month for clean accounting and easy employee reimbursements.</p>
+      </div>
+      <div class="why-card fi d2">
+        <div class="why-ico"><i class="fas fa-user-cog"></i></div>
+        <h3>Dedicated Account Manager</h3>
+        <p>Single point of contact for all changes, escalations and reporting needs — always reachable.</p>
+      </div>
+      <div class="why-card fi d3">
+        <div class="why-ico"><i class="fas fa-satellite-dish"></i></div>
+        <h3>Real-Time GPS Tracking</h3>
+        <p>Live tracking on every trip. Know exactly where your employees are, around the clock.</p>
+      </div>
+      <div class="why-card fi d4">
+        <div class="why-ico"><i class="fas fa-shield-alt"></i></div>
+        <h3>100% Verified Drivers</h3>
+        <p>Police-verified, trained in safety protocols and regularly background-audited drivers only.</p>
+      </div>
+      <div class="why-card fi d5">
+        <div class="why-ico"><i class="fas fa-chart-bar"></i></div>
+        <h3>Monthly Analytics</h3>
+        <p>Detailed trip logs, utilization dashboards and cost analysis delivered automatically every month.</p>
+      </div>
+      <div class="why-card fi d6">
+        <div class="why-ico"><i class="fas fa-headset"></i></div>
+        <h3>24/7 Emergency Support</h3>
+        <p>Round-the-clock helpline for mid-trip breakdowns, driver no-shows and urgent rerouting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     OUTSTATION ROUTES
+════════════════════════════════════════════ -->
+<section class="section" id="routes">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-map-marked-alt"></i>&nbsp; Business Routes</div>
+      <h2 class="sec-title">Outstation <span>Business Travel</span> from Hyderabad</h2>
+      <p class="sec-desc">Intercity cabs for client visits, branch office travel and business meetings — all with corporate pricing and monthly invoicing.</p>
+    </div>
+    <div class="routes-grid">
+      <a href="#contact" class="route-card fi d1">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Vijayawada</span><span class="rd">~275 km · ~4.5 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d2">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Bangalore</span><span class="rd">~570 km · ~9 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d3">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Chennai</span><span class="rd">~630 km · ~9 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d4">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Tirupati</span><span class="rd">~565 km · ~8 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d1">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Pune</span><span class="rd">~560 km · ~9 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d2">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Warangal</span><span class="rd">~145 km · ~2.5 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d3">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Mumbai</span><span class="rd">~720 km · ~12 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d4">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Karimnagar</span><span class="rd">~165 km · ~3 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d1">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Nalgonda</span><span class="rd">~90 km · ~1.5 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d2">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Gulbarga</span><span class="rd">~215 km · ~3.5 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d3">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Nanded</span><span class="rd">~275 km · ~5 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+      <a href="#contact" class="route-card fi d4">
+        <div class="route-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="route-info"><span class="rn">Guntur</span><span class="rd">~255 km · ~4 hrs</span></div>
+        <i class="fas fa-chevron-right rarr"></i>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:30px" class="fi">
+      <a href="#contact" class="btn-primary">
+        <i class="fas fa-map"></i> Enquire for All 100+ Routes
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     TESTIMONIALS — CORPORATE CLIENTS
+════════════════════════════════════════════ -->
+<section class="section alt" id="reviews">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-building"></i>&nbsp; Client Stories</div>
+      <h2 class="sec-title">Trusted by <span>Leading Companies</span></h2>
+      <p class="sec-desc">What HR managers and operations heads say about their experience with DSR Tours &amp; Travels.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fi d1">
+        <div class="testi-top">
+          <div class="testi-av">A</div>
+          <div class="testi-meta">
+            <span class="name">Ananya Krishnan</span>
+            <span class="desg">Senior HR Manager</span>
+            <span class="testi-co"><i class="fas fa-building"></i> Infosys BPM, Hyderabad</span>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-txt">"We switched to DSR for our 400-employee shift transport 2 years ago. Zero incidents, on-time every single day. Their dedicated manager resolves issues within minutes. The monthly GST billing is seamless — our finance team loves it."</p>
+      </div>
+      <div class="testi-card fi d2">
+        <div class="testi-top">
+          <div class="testi-av">R</div>
+          <div class="testi-meta">
+            <span class="name">Rajesh Mehra</span>
+            <span class="desg">Head of Operations</span>
+            <span class="testi-co"><i class="fas fa-building"></i> Deloitte, Hyderabad</span>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-txt">"We needed executive cabs for 30 senior leaders flying in for a leadership summit. DSR deployed Innova Crystas for all airport pickups — all on time, all professional. The event coordination was absolutely flawless."</p>
+      </div>
+      <div class="testi-card fi d3">
+        <div class="testi-top">
+          <div class="testi-av">S</div>
+          <div class="testi-meta">
+            <span class="name">Sravanthi Reddy</span>
+            <span class="desg">Admin &amp; Facilities Manager</span>
+            <span class="testi-co"><i class="fas fa-building"></i> WNS Global Services</span>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-txt">"DSR manages our 3-shift transport for 600+ employees across 12 routes. Real-time tracking gives us full confidence even at 2 AM shifts. 3 years of partnership and the professionalism has never wavered. Truly unmatched."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CONTACT / CORPORATE ENQUIRY
+════════════════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="sec-inner">
+    <div class="contact-wrap">
+
+      <!-- Left: Info -->
+      <div class="fi">
+        <div class="sec-tag" style="margin-bottom:14px"><i class="fas fa-handshake"></i>&nbsp; Partner With Us</div>
+        <div class="cinfo-hdr">
+          <h2>Ready to Onboard<br>Your Company?</h2>
+          <p>Speak to our corporate sales team today. We'll design a tailored transport plan with transparent pricing — delivered within 2 hours of your enquiry.</p>
+        </div>
+        <div class="cinfo-list">
+          <div class="cinfo-item">
+            <div class="cinfo-ico"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <span class="cinfo-lbl">Corporate Helpline</span>
+              <span class="cinfo-val"><a href="tel:+918019971305">+91 8019971305</a></span>
+            </div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-ico"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <span class="cinfo-lbl">WhatsApp</span>
+              <span class="cinfo-val"><a href="https://wa.me/+918019971305">+91 8019971305</a></span>
+            </div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-ico"><i class="fas fa-envelope"></i></div>
+            <div>
+              <span class="cinfo-lbl">Email</span>
+              <span class="cinfo-val"><a href="mailto:info@dsrtoursandtravels.in">info@dsrtoursandtravels.in</a></span>
+            </div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <span class="cinfo-lbl">Office Address</span>
+              <span class="cinfo-val" style="font-size:13.5px">A-199, Hill Colony, Vanasthalipuram,<br>Hyderabad, Telangana 500070</span>
+            </div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-ico"><i class="fas fa-clock"></i></div>
+            <div>
+              <span class="cinfo-lbl">Availability</span>
+              <span class="cinfo-val">24 / 7 — Always Available</span>
+            </div>
+          </div>
+        </div>
+        <div class="cinfo-btns">
+          <a href="tel:+918019971305" class="btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+          <a href="https://wa.me/+918019971305" class="btn-wa"
+             style="padding:13px 24px;border-radius:50px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Detailed Form -->
+      <div class="form-box fi">
+        <h3>Corporate Transport Enquiry</h3>
+        <p>Tell us your needs — we'll respond with a detailed proposal within 2 hours.</p>
+        <form id="contactForm">
+          <div class="f2">
+            <div class="fg"><label>Company Name</label><input type="text" placeholder="ABC Technologies Pvt. Ltd." required /></div>
+            <div class="fg"><label>Your Name</label><input type="text" placeholder="Full Name" required /></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX" required /></div>
+            <div class="fg"><label>Work Email</label><input type="email" placeholder="you@company.com" required /></div>
+          </div>
+          <div class="f2">
+            <div class="fg">
+              <label>No. of Employees</label>
+              <select>
+                <option>Less than 50</option><option>50–200</option>
+                <option>200–500</option><option>500+</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Vehicles Needed</label>
+              <select>
+                <option>1–5 Vehicles</option><option>5–15 Vehicles</option>
+                <option>15–30 Vehicles</option><option>30+ Vehicles</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Primary Service Required</label>
+            <select>
+              <option>Daily Employee Transport</option>
+              <option>Executive / CXO Cabs</option>
+              <option>Airport Transfers</option>
+              <option>Monthly Fleet Rental</option>
+              <option>Corporate Event Transport</option>
+              <option>Outstation Business Travel</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Pickup Area(s) / City Zones</label>
+            <input type="text" placeholder="e.g., HITEC City, Gachibowli, Secunderabad, Uppal" />
+          </div>
+          <div class="fg">
+            <label>Additional Requirements</label>
+            <textarea rows="3" placeholder="Shift timings, vehicle preferences, expected start date, special needs..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i> Submit Enquiry — Response Within 2 Hours
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <!-- Brand -->
+      <div class="foot-brand">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-car"></i></div>
+          <div class="logo-text">
+            <span class="brand">DSR Tours</span>
+            <span class="sub">&amp; Travels</span>
+          </div>
+        </div>
+        <p class="foot-desc">
+          Hyderabad's leading corporate cab and transport management company since 2017.
+          Trusted by 200+ companies across IT, BPO, manufacturing &amp; healthcare sectors.
+        </p>
+        <div class="social-row">
+          <a href="#" class="soc-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/+918019971305" class="soc-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <!-- Quick Links -->
+      <div class="foot-col">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#howitworks">How It Works</a></li>
+          <li><a href="#fleet">Our Fleet</a></li>
+          <li><a href="#plans">Corporate Plans</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Services -->
+      <div class="foot-col">
+        <h4>Our Services</h4>
+        <ul class="foot-links">
+          <li><a href="#">Employee Transport</a></li>
+          <li><a href="#">Executive Cabs</a></li>
+          <li><a href="#">Airport Transfers</a></li>
+          <li><a href="#">Monthly Fleet Rental</a></li>
+          <li><a href="#">Event Transportation</a></li>
+          <li><a href="#">Outstation Business</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul class="foot-links">
+          <li>
+            <a href="tel:+918019971305">
+              <i class="fas fa-phone" style="color:var(--yellow);width:14px"></i> +91 8019971305
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/+918019971305">
+              <i class="fab fa-whatsapp" style="color:#25D366;width:14px"></i> WhatsApp Us
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@dsrtoursandtravels.in">
+              <i class="fas fa-envelope" style="color:var(--yellow);width:14px"></i> info@dsrtoursandtravels.in
+            </a>
+          </li>
+          <li>
+            <a href="#" style="pointer-events:none;align-items:flex-start">
+              <i class="fas fa-map-marker-alt" style="color:var(--yellow);width:14px;margin-top:3px"></i>
+              A-199, Hill Colony, Vanasthalipuram, Hyderabad 500070
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2025 DSR Tours &amp; Travels. All Rights Reserved.</p>
+      <p><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a> &nbsp;|&nbsp; <a href="#">GST: 36XXXXX0000X1Z5</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/+918019971305" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<!-- Back to Top -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg">Enquiry received! We'll respond within 2 hours.</span>
+</div>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+  /* ── THEME ───────────────────────────────── */
+  const html       = document.documentElement;
+  const toggle     = document.getElementById('themeToggle');
+  const themeIcon  = document.getElementById('themeIcon');
+  const saved      = localStorage.getItem('dsr-theme') || 'light';
+
+  function applyTheme(t) {
+    html.setAttribute('data-theme', t);
+    localStorage.setItem('dsr-theme', t);
+    toggle.classList.toggle('on', t === 'dark');
+    themeIcon.className = t === 'dark' ? 'fas fa-moon theme-icon' : 'fas fa-sun theme-icon';
+  }
+  applyTheme(saved);
+  toggle.addEventListener('click', () =>
+    applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light')
+  );
+
+  /* ── NAVBAR SCROLL ─────────────────────── */
+  const navbar = document.getElementById('navbar');
+  const btt    = document.getElementById('btt');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', scrollY > 50);
+    btt.classList.toggle('vis', scrollY > 400);
+  }, { passive: true });
+
+  /* ── HAMBURGER ─────────────────────────── */
+  const hbg     = document.getElementById('hbg');
+  const mobMenu = document.getElementById('mobMenu');
+  let menuOpen = false;
+  hbg.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobMenu.classList.toggle('open', menuOpen);
+    const [s0, s1, s2] = hbg.querySelectorAll('span');
+    if (menuOpen) {
+      s0.style.transform = 'rotate(45deg) translate(5px,5px)';
+      s1.style.opacity   = '0';
+      s2.style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    } else {
+      [s0, s1, s2].forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+  function closeMenu() {
+    menuOpen = false;
+    mobMenu.classList.remove('open');
+    hbg.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+
+  /* ── PARTICLES ─────────────────────────── */
+  const pc = document.getElementById('particles');
+  for (let i = 0; i < 12; i++) {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    const sz = 2 + Math.random() * 5;
+    el.style.cssText =
+      `left:${Math.random()*100}%;top:${Math.random()*100}%;` +
+      `width:${sz}px;height:${sz}px;` +
+      `animation-delay:${Math.random()*5}s;animation-duration:${4+Math.random()*4}s;`;
+    pc.appendChild(el);
+  }
+
+  /* ── COUNTER ANIMATION ─────────────────── */
+  function runCounter(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    let cur = 0;
+    const step = Math.max(1, Math.ceil(target / 55));
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = cur.toLocaleString('en-IN') + suffix;
+      if (cur >= target) clearInterval(t);
+    }, 28);
+  }
+
+  /* ── SCROLL OBSERVER ───────────────────── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('vis');
+      e.target.querySelectorAll('[data-target]').forEach(runCounter);
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+  /* ── FORMS ─────────────────────────────── */
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4500);
+  }
+  document.getElementById('bookingForm').addEventListener('submit', e => {
+    e.preventDefault();
+    showToast('Corporate enquiry received! Our team will contact you within 2 hours.');
+    e.target.reset();
+  });
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    showToast('Proposal request submitted! Expect a detailed quote within 2 hours.');
+    e.target.reset();
+  });
+</script>
+</body>
+</html>

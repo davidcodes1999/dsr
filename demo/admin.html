@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSR Admin — Corporate Fleet Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    /* ═══════════════════════════════════════
+       THEME VARIABLES
+    ═══════════════════════════════════════ */
+    :root[data-theme="dark"] {
+      --bg:        #0b0b0b;
+      --bg2:       #111111;
+      --bg3:       #181818;
+      --card:      #161616;
+      --card2:     #1e1e1e;
+      --sidebar:   #0d0d0d;
+      --header:    rgba(13,13,13,0.95);
+      --txt:       #f0f0f0;
+      --txt2:      #aaaaaa;
+      --muted:     #555555;
+      --border:    #252525;
+      --yellow:    #FFC300;
+      --yellow-d:  #e6af00;
+      --yellow-l:  rgba(255,195,0,0.10);
+      --yellow-g:  rgba(255,195,0,0.22);
+      --green:     #22c55e;
+      --green-l:   rgba(34,197,94,0.12);
+      --red:       #ef4444;
+      --red-l:     rgba(239,68,68,0.12);
+      --blue:      #3b82f6;
+      --blue-l:    rgba(59,130,246,0.12);
+      --purple:    #a855f7;
+      --purple-l:  rgba(168,85,247,0.12);
+      --shadow:    0 2px 16px rgba(0,0,0,0.5);
+      --shadow-h:  0 8px 32px rgba(0,0,0,0.7);
+      --input-bg:  #1e1e1e;
+      --tag-txt:   #FFC300;
+      --scrollbar: #252525;
+    }
+    :root[data-theme="light"] {
+      --bg:        #f4f5f7;
+      --bg2:       #eef0f5;
+      --bg3:       #e6e8f0;
+      --card:      #ffffff;
+      --card2:     #f9fafb;
+      --sidebar:   #ffffff;
+      --header:    rgba(255,255,255,0.96);
+      --txt:       #0d0d0d;
+      --txt2:      #555555;
+      --muted:     #999999;
+      --border:    #e5e7eb;
+      --yellow:    #FFC300;
+      --yellow-d:  #e6af00;
+      --yellow-l:  rgba(255,195,0,0.12);
+      --yellow-g:  rgba(255,195,0,0.30);
+      --green:     #16a34a;
+      --green-l:   rgba(22,163,74,0.10);
+      --red:       #dc2626;
+      --red-l:     rgba(220,38,38,0.10);
+      --blue:      #2563eb;
+      --blue-l:    rgba(37,99,235,0.10);
+      --purple:    #7c3aed;
+      --purple-l:  rgba(124,58,237,0.10);
+      --shadow:    0 2px 14px rgba(0,0,0,0.07);
+      --shadow-h:  0 8px 32px rgba(0,0,0,0.12);
+      --input-bg:  #f4f5f7;
+      --tag-txt:   #a07800;
+      --scrollbar: #d1d5db;
+    }
+
+    /* ═══════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size:14px; }
+    body {
+      font-family:'Poppins', sans-serif;
+      background:var(--bg); color:var(--txt);
+      display:flex; min-height:100vh;
+      transition:background .3s, color .3s;
+      overflow-x:hidden;
+    }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:'Poppins',sans-serif; cursor:pointer; border:none; }
+    img { display:block; }
+    ::-webkit-scrollbar { width:5px; height:5px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--scrollbar); border-radius:3px; }
+    input, select, textarea {
+      font-family:'Poppins',sans-serif; font-size:13px;
+      background:var(--input-bg); color:var(--txt);
+      border:1.5px solid var(--border); border-radius:9px;
+      padding:9px 13px; outline:none;
+      transition:border-color .2s, box-shadow .2s, background .3s;
+    }
+    input::placeholder { color:var(--muted); }
+    input:focus, select:focus {
+      border-color:var(--yellow);
+      box-shadow:0 0 0 3px var(--yellow-l);
+    }
+    select option { background:var(--card); }
+
+    /* ═══════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════ */
+    .sidebar {
+      width:240px; flex-shrink:0; background:var(--sidebar);
+      border-right:1px solid var(--border);
+      display:flex; flex-direction:column;
+      position:fixed; top:0; left:0; bottom:0;
+      z-index:200; transition:transform .3s, background .3s;
+      overflow-y:auto;
+    }
+    .sidebar-logo {
+      display:flex; align-items:center; gap:10px;
+      padding:20px 20px 16px;
+      border-bottom:1px solid var(--border);
+    }
+    .s-logo-ico {
+      width:36px; height:36px; background:var(--yellow); border-radius:9px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; color:#000; flex-shrink:0;
+    }
+    .s-logo-txt .brand { font-size:15px; font-weight:800; color:var(--txt); display:block; }
+    .s-logo-txt .sub   { font-size:9px; font-weight:600; color:var(--yellow); letter-spacing:1.3px; text-transform:uppercase; }
+    .sidebar-badge {
+      margin:12px 16px 4px;
+      background:var(--yellow-l); border:1px solid var(--yellow-g);
+      color:var(--yellow); font-size:9.5px; font-weight:700;
+      padding:4px 10px; border-radius:50px; display:inline-block;
+      letter-spacing:1px; text-transform:uppercase;
+    }
+    .nav-section { padding:8px 0; }
+    .nav-label {
+      font-size:9.5px; font-weight:700; color:var(--muted);
+      text-transform:uppercase; letter-spacing:1.2px;
+      padding:10px 20px 4px;
+    }
+    .nav-item {
+      display:flex; align-items:center; gap:11px;
+      padding:10px 20px; margin:1px 10px; border-radius:10px;
+      font-size:13px; font-weight:500; color:var(--txt2);
+      cursor:pointer; transition:background .2s, color .2s;
+      position:relative;
+    }
+    .nav-item:hover { background:var(--yellow-l); color:var(--yellow); }
+    .nav-item.active {
+      background:var(--yellow); color:#000; font-weight:700;
+    }
+    .nav-item .ni { width:18px; text-align:center; font-size:14px; }
+    .nav-badge {
+      margin-left:auto; background:var(--red); color:#fff;
+      font-size:9px; font-weight:800; min-width:18px; height:18px;
+      border-radius:50px; display:flex; align-items:center; justify-content:center;
+      padding:0 5px;
+    }
+    .nav-item.active .nav-badge { background:#000; color:var(--yellow); }
+    .sidebar-footer {
+      margin-top:auto; padding:16px; border-top:1px solid var(--border);
+    }
+    .user-pill {
+      display:flex; align-items:center; gap:10px;
+      background:var(--card2); border:1px solid var(--border);
+      border-radius:12px; padding:10px 12px; cursor:pointer;
+      transition:border-color .2s;
+    }
+    .user-pill:hover { border-color:var(--yellow); }
+    .user-av {
+      width:32px; height:32px; background:var(--yellow); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:800; color:#000; flex-shrink:0;
+    }
+    .user-name  { font-size:12px; font-weight:700; color:var(--txt); display:block; }
+    .user-role  { font-size:10px; color:var(--muted); }
+    .user-pill > i { margin-left:auto; color:var(--muted); font-size:12px; }
+
+    /* ═══════════════════════════════════════
+       MAIN AREA
+    ═══════════════════════════════════════ */
+    .main {
+      margin-left:240px; flex:1; display:flex; flex-direction:column; min-height:100vh;
+      transition:margin-left .3s;
+    }
+    .topbar {
+      position:sticky; top:0; z-index:100;
+      background:var(--header);
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; gap:14px;
+      padding:0 24px; height:60px;
+      transition:background .3s;
+    }
+    .topbar-title {
+      font-size:17px; font-weight:800; color:var(--txt); flex:1;
+    }
+    .topbar-title span { color:var(--yellow); }
+    .tb-search {
+      display:flex; align-items:center; gap:9px;
+      background:var(--input-bg); border:1.5px solid var(--border);
+      border-radius:50px; padding:7px 16px; transition:border-color .2s;
+    }
+    .tb-search:focus-within { border-color:var(--yellow); }
+    .tb-search i  { color:var(--muted); font-size:13px; }
+    .tb-search input {
+      background:transparent; border:none; outline:none;
+      font-size:13px; color:var(--txt); width:180px; padding:0;
+      box-shadow:none;
+    }
+    .tb-btn {
+      width:36px; height:36px; background:var(--card);
+      border:1.5px solid var(--border); border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:14px; color:var(--txt2); position:relative;
+      transition:border-color .2s, color .2s;
+    }
+    .tb-btn:hover { border-color:var(--yellow); color:var(--yellow); }
+    .tb-dot {
+      position:absolute; top:6px; right:6px; width:7px; height:7px;
+      background:var(--red); border-radius:50%;
+      border:2px solid var(--card);
+    }
+    .theme-toggle {
+      display:flex; align-items:center; gap:6px;
+      background:var(--card); border:1.5px solid var(--border);
+      border-radius:50px; padding:5px 12px 5px 8px;
+      font-size:12px; color:var(--txt2); transition:border-color .2s;
+    }
+    .theme-toggle:hover { border-color:var(--yellow); }
+    .theme-toggle i { font-size:13px; }
+    .tgl-sw {
+      width:32px; height:17px; background:var(--border);
+      border-radius:50px; position:relative; cursor:pointer;
+      border:none; transition:background .3s; margin-left:2px;
+    }
+    .tgl-sw.on { background:var(--yellow); }
+    .tgl-sw::after {
+      content:''; position:absolute; width:13px; height:13px;
+      background:#fff; border-radius:50%; top:2px; left:2px;
+      transition:transform .3s; box-shadow:0 1px 3px rgba(0,0,0,.3);
+    }
+    .tgl-sw.on::after { transform:translateX(15px); }
+
+    /* ═══════════════════════════════════════
+       CONTENT AREA
+    ═══════════════════════════════════════ */
+    .content { padding:24px; flex:1; }
+    .page-hdr { margin-bottom:22px; }
+    .page-hdr h2 { font-size:20px; font-weight:800; color:var(--txt); }
+    .page-hdr p  { font-size:13px; color:var(--muted); margin-top:3px; }
+    .breadcrumb  { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); margin-bottom:4px; }
+    .breadcrumb span { color:var(--yellow); font-weight:600; }
+
+    /* ═══════════════════════════════════════
+       KPI CARDS
+    ═══════════════════════════════════════ */
+    .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px; }
+    .kpi {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:20px 20px 18px; position:relative; overflow:hidden;
+      transition:transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .kpi:hover { transform:translateY(-4px); box-shadow:var(--shadow-h); border-color:var(--yellow); }
+    .kpi-accent { position:absolute; top:0; right:0; width:80px; height:80px; border-radius:0 16px 0 80px; opacity:.07; }
+    .kpi-ico {
+      width:42px; height:42px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center; font-size:18px;
+      margin-bottom:14px;
+    }
+    .kpi-val  { font-size:28px; font-weight:900; color:var(--txt); line-height:1; margin-bottom:4px; }
+    .kpi-lbl  { font-size:12px; color:var(--muted); font-weight:500; margin-bottom:8px; }
+    .kpi-delta {
+      display:inline-flex; align-items:center; gap:4px;
+      font-size:11px; font-weight:700; padding:3px 8px; border-radius:50px;
+    }
+    .kpi-delta.up   { background:var(--green-l); color:var(--green); }
+    .kpi-delta.down { background:var(--red-l);   color:var(--red); }
+    .kpi-delta.flat { background:var(--yellow-l); color:var(--yellow); }
+
+    /* ═══════════════════════════════════════
+       CHARTS ROW
+    ═══════════════════════════════════════ */
+    .charts-row { display:grid; grid-template-columns:1.6fr 1fr; gap:16px; margin-bottom:22px; }
+    .chart-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px; padding:20px;
+    }
+    .chart-hdr {
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;
+    }
+    .chart-hdr h3  { font-size:15px; font-weight:700; color:var(--txt); }
+    .chart-hdr p   { font-size:11px; color:var(--muted); margin-top:2px; }
+    .chart-tabs    { display:flex; gap:4px; }
+    .ctab {
+      font-size:11px; font-weight:600; padding:5px 12px; border-radius:8px;
+      border:1.5px solid var(--border); color:var(--txt2); background:transparent;
+      transition:all .2s; cursor:pointer;
+    }
+    .ctab.active { background:var(--yellow); color:#000; border-color:var(--yellow); }
+    .chart-wrap  { position:relative; }
+
+    /* ═══════════════════════════════════════
+       SECONDARY ROW: TABLE + DRIVERS
+    ═══════════════════════════════════════ */
+    .mid-row { display:grid; grid-template-columns:1.5fr 1fr; gap:16px; margin-bottom:22px; }
+
+    /* Table */
+    .table-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
+    }
+    .tcard-hdr {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 20px 0;
+    }
+    .tcard-hdr h3 { font-size:15px; font-weight:700; color:var(--txt); }
+    .tcard-hdr p  { font-size:11px; color:var(--muted); margin-top:2px; }
+    .tcard-actions { display:flex; gap:8px; }
+    .tbl-btn {
+      font-size:12px; font-weight:600; padding:6px 12px; border-radius:8px;
+      border:1.5px solid var(--border); color:var(--txt2); background:transparent;
+      cursor:pointer; transition:border-color .2s, color .2s;
+    }
+    .tbl-btn:hover { border-color:var(--yellow); color:var(--yellow); }
+    .tbl-btn.primary { background:var(--yellow); color:#000; border-color:var(--yellow); }
+    .tbl-btn.primary:hover { background:var(--yellow-d); }
+    .table-wrap { overflow-x:auto; padding:0 20px 16px; margin-top:14px; }
+    table { width:100%; border-collapse:collapse; }
+    thead th {
+      font-size:10.5px; font-weight:700; color:var(--muted);
+      text-transform:uppercase; letter-spacing:.8px;
+      padding:8px 10px; text-align:left;
+      border-bottom:1px solid var(--border);
+    }
+    tbody tr { transition:background .15s; }
+    tbody tr:hover { background:var(--yellow-l); }
+    tbody td {
+      padding:11px 10px; font-size:12.5px; color:var(--txt2);
+      border-bottom:1px solid var(--border);
+    }
+    tbody tr:last-child td { border-bottom:none; }
+    .td-bold { font-weight:600; color:var(--txt); }
+    .td-mono { font-family:monospace; font-size:12px; color:var(--muted); }
+    .status-pill {
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:11px; font-weight:700; padding:3px 10px; border-radius:50px;
+    }
+    .status-pill::before { content:''; width:6px; height:6px; border-radius:50%; }
+    .sp-active   { background:var(--green-l);  color:var(--green);  } .sp-active::before  { background:var(--green);  }
+    .sp-pending  { background:var(--yellow-l); color:var(--yellow); } .sp-pending::before { background:var(--yellow); }
+    .sp-done     { background:var(--blue-l);   color:var(--blue);   } .sp-done::before    { background:var(--blue);   }
+    .sp-cancel   { background:var(--red-l);    color:var(--red);    } .sp-cancel::before  { background:var(--red);    }
+    .sp-transit  { background:var(--purple-l); color:var(--purple); } .sp-transit::before { background:var(--purple); }
+    .td-vehicle { display:flex; align-items:center; gap:7px; }
+    .veh-ico { width:26px; height:26px; background:var(--yellow-l); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--yellow); flex-shrink:0; }
+
+    /* ═══════════════════════════════════════
+       DRIVER LIST PANEL
+    ═══════════════════════════════════════ */
+    .panel-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      display:flex; flex-direction:column; overflow:hidden;
+    }
+    .panel-hdr {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 18px 0;
+    }
+    .panel-hdr h3 { font-size:15px; font-weight:700; color:var(--txt); }
+    .panel-hdr p  { font-size:11px; color:var(--muted); margin-top:2px; }
+    .panel-scroll { overflow-y:auto; flex:1; padding:12px 8px; }
+    .driver-row {
+      display:flex; align-items:center; gap:10px;
+      padding:9px 10px; border-radius:10px; cursor:pointer;
+      transition:background .15s;
+    }
+    .driver-row:hover { background:var(--yellow-l); }
+    .drv-av {
+      width:36px; height:36px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:800; color:#000; flex-shrink:0;
+    }
+    .drv-name { font-size:12.5px; font-weight:600; color:var(--txt); display:block; }
+    .drv-sub  { font-size:10.5px; color:var(--muted); }
+    .drv-status { margin-left:auto; }
+    .dot-status {
+      display:inline-flex; align-items:center; gap:4px;
+      font-size:10px; font-weight:700;
+    }
+    .dot-status::before { content:''; width:7px; height:7px; border-radius:50%; }
+    .ds-on  { color:var(--green);  } .ds-on::before  { background:var(--green);  box-shadow:0 0 5px var(--green); }
+    .ds-off { color:var(--muted);  } .ds-off::before { background:var(--muted);  }
+    .ds-bsy { color:var(--yellow); } .ds-bsy::before { background:var(--yellow); box-shadow:0 0 5px var(--yellow); }
+
+    /* ═══════════════════════════════════════
+       BOTTOM ROW: FLEET STATUS + ROUTES
+    ═══════════════════════════════════════ */
+    .bottom-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:22px; }
+
+    /* Fleet donut */
+    .donut-grid {
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;
+    }
+    .donut-item {
+      background:var(--card2); border:1px solid var(--border); border-radius:12px;
+      padding:12px 14px;
+    }
+    .donut-num  { font-size:22px; font-weight:900; color:var(--txt); line-height:1; }
+    .donut-lbl  { font-size:11px; color:var(--muted); margin-top:2px; }
+    .donut-bar  { height:4px; border-radius:2px; margin-top:8px; }
+
+    /* Route performance */
+    .route-perf-list { display:flex; flex-direction:column; gap:12px; margin-top:14px; }
+    .rp-item { display:flex; flex-direction:column; gap:5px; }
+    .rp-top  { display:flex; justify-content:space-between; align-items:center; }
+    .rp-name { font-size:12.5px; font-weight:600; color:var(--txt); }
+    .rp-pct  { font-size:12px; font-weight:700; color:var(--yellow); }
+    .rp-bar  { height:6px; background:var(--bg3); border-radius:3px; overflow:hidden; }
+    .rp-fill { height:100%; border-radius:3px; background:var(--yellow); transition:width 1s ease; }
+
+    /* Alert / notification panel */
+    .alert-list { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+    .alert-item {
+      display:flex; align-items:flex-start; gap:10px;
+      background:var(--card2); border:1px solid var(--border); border-radius:11px;
+      padding:11px 13px;
+    }
+    .alert-ico {
+      width:30px; height:30px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;
+    }
+    .alert-txt .at { font-size:12px; font-weight:600; color:var(--txt); display:block; }
+    .alert-txt .as { font-size:11px; color:var(--muted); }
+    .alert-time { margin-left:auto; font-size:10px; color:var(--muted); white-space:nowrap; padding-top:2px; }
+
+    /* ═══════════════════════════════════════
+       QUICK ACTIONS
+    ═══════════════════════════════════════ */
+    .qa-row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:22px; }
+    .qa-btn {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:9px; padding:18px 12px;
+      background:var(--card); border:1.5px solid var(--border); border-radius:14px;
+      font-size:12px; font-weight:600; color:var(--txt2); cursor:pointer;
+      transition:border-color .2s, color .2s, background .2s, transform .2s;
+    }
+    .qa-btn:hover {
+      border-color:var(--yellow); color:var(--yellow); background:var(--yellow-l);
+      transform:translateY(-3px);
+    }
+    .qa-ico {
+      width:40px; height:40px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center; font-size:18px;
+      transition:background .2s, color .2s;
+    }
+
+    /* ═══════════════════════════════════════
+       MODALS (add booking)
+    ═══════════════════════════════════════ */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,.65);
+      backdrop-filter:blur(4px); z-index:500;
+      display:none; align-items:center; justify-content:center; padding:24px;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal {
+      background:var(--card); border:1px solid var(--border); border-radius:20px;
+      padding:28px; width:100%; max-width:560px; max-height:90vh; overflow-y:auto;
+      box-shadow:var(--shadow-h);
+    }
+    .modal-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
+    .modal-hdr h3 { font-size:18px; font-weight:800; color:var(--txt); }
+    .modal-close {
+      width:32px; height:32px; border-radius:8px;
+      background:var(--bg3); border:none; color:var(--muted);
+      display:flex; align-items:center; justify-content:center; font-size:14px;
+      cursor:pointer; transition:background .2s, color .2s;
+    }
+    .modal-close:hover { background:var(--red-l); color:var(--red); }
+    .fg { margin-bottom:14px; }
+    .fg label { display:block; font-size:11.5px; font-weight:600; color:var(--txt2); margin-bottom:5px; }
+    .fg input, .fg select, .fg textarea { width:100%; }
+    .f2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .modal-foot { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; }
+    .btn-cancel { padding:10px 20px; border-radius:9px; border:1.5px solid var(--border); background:transparent; color:var(--txt2); font-size:13px; font-weight:600; }
+    .btn-confirm { padding:10px 22px; border-radius:9px; border:none; background:var(--yellow); color:#000; font-size:13px; font-weight:700; transition:background .2s; }
+    .btn-confirm:hover { background:var(--yellow-d); }
+
+    /* ═══════════════════════════════════════
+       TOAST
+    ═══════════════════════════════════════ */
+    .toast {
+      position:fixed; bottom:24px; right:24px; z-index:9999;
+      transform:translateY(80px); opacity:0;
+      background:var(--card); border:1px solid var(--border); border-left:4px solid var(--yellow);
+      padding:12px 18px; border-radius:12px;
+      font-size:13px; font-weight:500; color:var(--txt);
+      box-shadow:var(--shadow-h);
+      display:flex; align-items:center; gap:9px;
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+      min-width:260px; max-width:380px;
+    }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast i { color:var(--yellow); font-size:17px; flex-shrink:0; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media(max-width:1280px) {
+      .kpi-row    { grid-template-columns:repeat(2,1fr); }
+      .bottom-row { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:1060px) {
+      .charts-row { grid-template-columns:1fr; }
+      .mid-row    { grid-template-columns:1fr; }
+      .qa-row     { grid-template-columns:repeat(3,1fr); }
+    }
+    @media(max-width:860px) {
+      .sidebar { transform:translateX(-100%); }
+      .sidebar.open { transform:translateX(0); }
+      .main { margin-left:0; }
+      .bottom-row { grid-template-columns:1fr; }
+      .tb-search { display:none; }
+    }
+    @media(max-width:540px) {
+      .kpi-row { grid-template-columns:1fr 1fr; }
+      .qa-row  { grid-template-columns:repeat(2,1fr); }
+      .f2 { grid-template-columns:1fr; }
+      .content { padding:16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="s-logo-ico"><i class="fas fa-car"></i></div>
+    <div class="s-logo-txt">
+      <span class="brand">DSR Admin</span>
+      <span class="sub">Control Panel</span>
+    </div>
+  </div>
+
+  <span class="sidebar-badge">Corporate Suite</span>
+
+  <nav class="nav-section">
+    <div class="nav-label">Main</div>
+    <div class="nav-item active" onclick="setNav(this)">
+      <i class="fas fa-gauge-high ni"></i> Dashboard
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-calendar-check ni"></i> Bookings
+      <span class="nav-badge">12</span>
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-map-marked-alt ni"></i> Live Tracking
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-route ni"></i> Trip Management
+    </div>
+  </nav>
+
+  <nav class="nav-section">
+    <div class="nav-label">Fleet</div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-car-side ni"></i> Vehicles
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-id-badge ni"></i> Drivers
+      <span class="nav-badge">3</span>
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-tools ni"></i> Maintenance
+    </div>
+  </nav>
+
+  <nav class="nav-section">
+    <div class="nav-label">Corporate</div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-building ni"></i> Clients
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-file-invoice-dollar ni"></i> Invoices
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-chart-bar ni"></i> Reports
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-users ni"></i> HR Portal
+    </div>
+  </nav>
+
+  <nav class="nav-section">
+    <div class="nav-label">System</div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-bell ni"></i> Notifications
+      <span class="nav-badge">5</span>
+    </div>
+    <div class="nav-item" onclick="setNav(this)">
+      <i class="fas fa-gear ni"></i> Settings
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-pill">
+      <div class="user-av">A</div>
+      <div>
+        <span class="user-name">Amit Sharma</span>
+        <span class="user-role">Super Admin</span>
+      </div>
+      <i class="fas fa-ellipsis-vertical"></i>
+    </div>
+  </div>
+</aside>
+
+<!-- ════════════════════════════════════════
+     MAIN
+════════════════════════════════════════ -->
+<div class="main" id="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button class="tb-btn" id="sideToggle" onclick="toggleSidebar()" title="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="topbar-title">Dashboard <span>Overview</span></div>
+
+    <div class="tb-search">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search bookings, drivers, clients…" />
+    </div>
+
+    <button class="tb-btn" title="Notifications">
+      <i class="fas fa-bell"></i>
+      <div class="tb-dot"></div>
+    </button>
+    <button class="tb-btn" title="Calendar">
+      <i class="fas fa-calendar-days"></i>
+    </button>
+
+    <div class="theme-toggle">
+      <i class="fas fa-moon" id="themeIcon"></i>
+      <button class="tgl-sw" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Page header -->
+    <div class="page-hdr">
+      <div class="breadcrumb">
+        <i class="fas fa-house" style="font-size:11px"></i>
+        <i class="fas fa-chevron-right" style="font-size:9px"></i>
+        <span>Dashboard</span>
+      </div>
+      <h2>Good Morning, Amit 👋</h2>
+      <p>Here's what's happening with your fleet today — Monday, 1 June 2026</p>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-accent" style="background:var(--yellow)"></div>
+        <div class="kpi-ico" style="background:var(--yellow-l);color:var(--yellow)">
+          <i class="fas fa-route"></i>
+        </div>
+        <div class="kpi-val" id="kTrips">0</div>
+        <div class="kpi-lbl">Trips Today</div>
+        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> +18% vs yesterday</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-accent" style="background:var(--green)"></div>
+        <div class="kpi-ico" style="background:var(--green-l);color:var(--green)">
+          <i class="fas fa-car-side"></i>
+        </div>
+        <div class="kpi-val" id="kVehicles">0</div>
+        <div class="kpi-lbl">Active Vehicles</div>
+        <div class="kpi-delta flat"><i class="fas fa-minus"></i> 87 total fleet</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-accent" style="background:var(--blue)"></div>
+        <div class="kpi-ico" style="background:var(--blue-l);color:var(--blue)">
+          <i class="fas fa-building"></i>
+        </div>
+        <div class="kpi-val" id="kClients">0</div>
+        <div class="kpi-lbl">Active Corporate Clients</div>
+        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> 4 new this month</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-accent" style="background:var(--purple)"></div>
+        <div class="kpi-ico" style="background:var(--purple-l);color:var(--purple)">
+          <i class="fas fa-indian-rupee-sign"></i>
+        </div>
+        <div class="kpi-val" id="kRevenue">₹0</div>
+        <div class="kpi-lbl">Revenue This Month</div>
+        <div class="kpi-delta up"><i class="fas fa-arrow-up"></i> +23% vs last month</div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="qa-row">
+      <button class="qa-btn" onclick="openModal()">
+        <div class="qa-ico" style="background:var(--yellow-l);color:var(--yellow)">
+          <i class="fas fa-plus"></i>
+        </div>
+        New Booking
+      </button>
+      <button class="qa-btn" onclick="showToast('Opening live map…')">
+        <div class="qa-ico" style="background:var(--green-l);color:var(--green)">
+          <i class="fas fa-map-location-dot"></i>
+        </div>
+        Live Map
+      </button>
+      <button class="qa-btn" onclick="showToast('Generating invoice…')">
+        <div class="qa-ico" style="background:var(--blue-l);color:var(--blue)">
+          <i class="fas fa-file-invoice"></i>
+        </div>
+        New Invoice
+      </button>
+      <button class="qa-btn" onclick="showToast('Opening driver panel…')">
+        <div class="qa-ico" style="background:var(--purple-l);color:var(--purple)">
+          <i class="fas fa-id-card"></i>
+        </div>
+        Add Driver
+      </button>
+      <button class="qa-btn" onclick="showToast('Downloading monthly report…')">
+        <div class="qa-ico" style="background:rgba(255,100,100,.12);color:var(--red)">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        Reports
+      </button>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-row">
+      <!-- Trips trend -->
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div>
+            <h3>Trip Volume</h3>
+            <p>Daily trips across all corporate accounts</p>
+          </div>
+          <div class="chart-tabs">
+            <button class="ctab active" onclick="switchChart(this,'week')">7D</button>
+            <button class="ctab"        onclick="switchChart(this,'month')">30D</button>
+            <button class="ctab"        onclick="switchChart(this,'year')">12M</button>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="tripChart" height="220"></canvas>
+        </div>
+      </div>
+      <!-- Revenue doughnut -->
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div>
+            <h3>Revenue by Service</h3>
+            <p>This month's breakdown</p>
+          </div>
+        </div>
+        <div class="chart-wrap" style="display:flex;align-items:center;justify-content:center;">
+          <canvas id="revenueChart" height="220" style="max-width:220px"></canvas>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--txt2)"><span style="width:10px;height:10px;border-radius:3px;background:#FFC300;flex-shrink:0"></span>Employee Transport</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--txt2)"><span style="width:10px;height:10px;border-radius:3px;background:#3b82f6;flex-shrink:0"></span>Executive Cabs</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--txt2)"><span style="width:10px;height:10px;border-radius:3px;background:#22c55e;flex-shrink:0"></span>Airport Transfers</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--txt2)"><span style="width:10px;height:10px;border-radius:3px;background:#a855f7;flex-shrink:0"></span>Outstation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS TABLE + DRIVERS -->
+    <div class="mid-row">
+
+      <!-- Recent Bookings -->
+      <div class="table-card">
+        <div class="tcard-hdr">
+          <div>
+            <h3>Recent Bookings</h3>
+            <p>Last 24 hours — all corporate accounts</p>
+          </div>
+          <div class="tcard-actions">
+            <button class="tbl-btn" onclick="showToast('Exporting to CSV…')"><i class="fas fa-download"></i> Export</button>
+            <button class="tbl-btn primary" onclick="openModal()"><i class="fas fa-plus"></i> New</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Client / Employee</th>
+                <th>Route</th>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-mono">#BK-20810</td>
+                <td><div class="td-bold">Infosys BPM</div><div style="font-size:11px;color:var(--muted)">Priya S. (Morning shift)</div></td>
+                <td>Gachibowli → Uppal</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-car"></i></div>TS09EF4521</div></td>
+                <td>Ramesh K.</td>
+                <td><span class="status-pill sp-active">In Progress</span></td>
+                <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td class="td-mono">#BK-20809</td>
+                <td><div class="td-bold">Deloitte HYD</div><div style="font-size:11px;color:var(--muted)">Arjun M. (Airport pickup)</div></td>
+                <td>RGIA → Banjara Hills</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-car-side"></i></div>TS10KL7744</div></td>
+                <td>Venkat R.</td>
+                <td><span class="status-pill sp-transit">On the Way</span></td>
+                <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td class="td-mono">#BK-20808</td>
+                <td><div class="td-bold">WNS Global</div><div style="font-size:11px;color:var(--muted)">Night shift batch — 24 emp.</div></td>
+                <td>Madhapur → Dilsukhnagar</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TS07MN1102</div></td>
+                <td>Suresh P.</td>
+                <td><span class="status-pill sp-done">Completed</span></td>
+                <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td class="td-mono">#BK-20807</td>
+                <td><div class="td-bold">Tech Mahindra</div><div style="font-size:11px;color:var(--muted)">Ananya R. (CXO transfer)</div></td>
+                <td>Jubilee Hills → RGIA</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-star"></i></div>TS08UV3310</div></td>
+                <td>Kiran M.</td>
+                <td><span class="status-pill sp-pending">Scheduled</span></td>
+                <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td class="td-mono">#BK-20806</td>
+                <td><div class="td-bold">Accenture HYD</div><div style="font-size:11px;color:var(--muted)">Morning shift — 18 emp.</div></td>
+                <td>Kondapur → HITEC City</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-van-shuttle"></i></div>TS12AB9933</div></td>
+                <td>Naresh B.</td>
+                <td><span class="status-pill sp-done">Completed</span></td>
+                <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
+              </tr>
+              <tr>
+                <td class="td-mono">#BK-20805</td>
+                <td><div class="td-bold">Wipro BPO</div><div style="font-size:11px;color:var(--muted)">Event — Annual Day</div></td>
+                <td>Multiple zones → HICC</td>
+                <td><div class="td-vehicle"><div class="veh-ico"><i class="fas fa-bus"></i></div>TS05GH6622</div></td>
+                <td>Anil V.</td>
+                <td><span class="status-pill sp-cancel">Cancelled</span></td>
+                <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening trip details…')"><i class="fas fa-eye"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Driver Panel -->
+      <div class="panel-card">
+        <div class="panel-hdr">
+          <div>
+            <h3>Driver Status</h3>
+            <p>Real-time availability — today</p>
+          </div>
+          <button class="tbl-btn" onclick="showToast('Opening driver management…')">View All</button>
+        </div>
+        <div class="panel-scroll">
+          <div class="driver-row">
+            <div class="drv-av" style="background:#FFC300">R</div>
+            <div><span class="drv-name">Ramesh Kumar</span><span class="drv-sub">Sedan · TS09EF4521</span></div>
+            <div class="drv-status"><div class="dot-status ds-bsy">On Trip</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#22c55e;color:#fff">V</div>
+            <div><span class="drv-name">Venkat Rao</span><span class="drv-sub">SUV · TS10KL7744</span></div>
+            <div class="drv-status"><div class="dot-status ds-bsy">On Trip</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#3b82f6;color:#fff">S</div>
+            <div><span class="drv-name">Suresh Prasad</span><span class="drv-sub">Mini Bus · TS07MN1102</span></div>
+            <div class="drv-status"><div class="dot-status ds-on">Available</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#a855f7;color:#fff">K</div>
+            <div><span class="drv-name">Kiran Mehta</span><span class="drv-sub">Innova · TS08UV3310</span></div>
+            <div class="drv-status"><div class="dot-status ds-on">Available</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#f97316;color:#fff">N</div>
+            <div><span class="drv-name">Naresh Babu</span><span class="drv-sub">Tempo · TS12AB9933</span></div>
+            <div class="drv-status"><div class="dot-status ds-on">Available</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#ec4899;color:#fff">A</div>
+            <div><span class="drv-name">Anil Varma</span><span class="drv-sub">Bus · TS05GH6622</span></div>
+            <div class="drv-status"><div class="dot-status ds-off">Off Duty</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#14b8a6;color:#fff">P</div>
+            <div><span class="drv-name">Prakash Nair</span><span class="drv-sub">Sedan · TS03CD2211</span></div>
+            <div class="drv-status"><div class="dot-status ds-off">Off Duty</div></div>
+          </div>
+          <div class="driver-row">
+            <div class="drv-av" style="background:#84cc16;color:#fff">D</div>
+            <div><span class="drv-name">Dinesh Yadav</span><span class="drv-sub">MPV · TS06ST5588</span></div>
+            <div class="drv-status"><div class="dot-status ds-bsy">On Trip</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+      <!-- Fleet Status -->
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div><h3>Fleet Status</h3><p>Live vehicle health — 87 total</p></div>
+          <button class="tbl-btn" onclick="showToast('Opening fleet management…')">Manage</button>
+        </div>
+        <div class="donut-grid">
+          <div class="donut-item">
+            <div class="donut-num" style="color:var(--green)">62</div>
+            <div class="donut-lbl">Active</div>
+            <div class="donut-bar" style="background:var(--green-l)">
+              <div style="height:100%;width:71%;background:var(--green);border-radius:2px"></div>
+            </div>
+          </div>
+          <div class="donut-item">
+            <div class="donut-num" style="color:var(--yellow)">14</div>
+            <div class="donut-lbl">Idle</div>
+            <div class="donut-bar" style="background:var(--yellow-l)">
+              <div style="height:100%;width:16%;background:var(--yellow);border-radius:2px"></div>
+            </div>
+          </div>
+          <div class="donut-item">
+            <div class="donut-num" style="color:var(--red)">7</div>
+            <div class="donut-lbl">Maintenance</div>
+            <div class="donut-bar" style="background:var(--red-l)">
+              <div style="height:100%;width:8%;background:var(--red);border-radius:2px"></div>
+            </div>
+          </div>
+          <div class="donut-item">
+            <div class="donut-num" style="color:var(--blue)">4</div>
+            <div class="donut-lbl">Offline</div>
+            <div class="donut-bar" style="background:var(--blue-l)">
+              <div style="height:100%;width:5%;background:var(--blue);border-radius:2px"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle type breakdown -->
+        <div style="margin-top:16px">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">By Vehicle Type</div>
+          <table style="width:100%">
+            <thead><tr>
+              <th style="padding:5px 0;font-size:10.5px;font-weight:700;color:var(--muted);text-align:left;border:none">Type</th>
+              <th style="padding:5px 0;font-size:10.5px;font-weight:700;color:var(--muted);text-align:right;border:none">Count</th>
+              <th style="padding:5px 0;font-size:10.5px;font-weight:700;color:var(--muted);text-align:right;border:none">Active</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="padding:7px 0;font-size:12.5px;color:var(--txt2);border:none"><i class="fas fa-car" style="color:var(--yellow);margin-right:6px;width:14px"></i>Sedan</td><td style="text-align:right;font-size:12.5px;color:var(--txt2);border:none;padding:7px 0">28</td><td style="text-align:right;border:none;padding:7px 0"><span style="color:var(--green);font-weight:700;font-size:12.5px">24</span></td></tr>
+              <tr><td style="padding:7px 0;font-size:12.5px;color:var(--txt2);border:none"><i class="fas fa-car-side" style="color:var(--blue);margin-right:6px;width:14px"></i>SUV / Innova</td><td style="text-align:right;font-size:12.5px;color:var(--txt2);border:none;padding:7px 0">18</td><td style="text-align:right;border:none;padding:7px 0"><span style="color:var(--green);font-weight:700;font-size:12.5px">15</span></td></tr>
+              <tr><td style="padding:7px 0;font-size:12.5px;color:var(--txt2);border:none"><i class="fas fa-van-shuttle" style="color:var(--purple);margin-right:6px;width:14px"></i>Tempo / Van</td><td style="text-align:right;font-size:12.5px;color:var(--txt2);border:none;padding:7px 0">22</td><td style="text-align:right;border:none;padding:7px 0"><span style="color:var(--green);font-weight:700;font-size:12.5px">16</span></td></tr>
+              <tr><td style="padding:7px 0;font-size:12.5px;color:var(--txt2);border:none"><i class="fas fa-bus" style="color:var(--green);margin-right:6px;width:14px"></i>Bus</td><td style="text-align:right;font-size:12.5px;color:var(--txt2);border:none;padding:7px 0">19</td><td style="text-align:right;border:none;padding:7px 0"><span style="color:var(--green);font-weight:700;font-size:12.5px">7</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Top Routes -->
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div><h3>Top Routes</h3><p>By trip volume this month</p></div>
+        </div>
+        <div class="route-perf-list">
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">Gachibowli ↔ HITEC City</span><span class="rp-pct">92%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:92%"></div></div>
+          </div>
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">Kondapur ↔ Madhapur</span><span class="rp-pct">78%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:78%"></div></div>
+          </div>
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">RGIA Airport Transfers</span><span class="rp-pct">65%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:65%"></div></div>
+          </div>
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">Secunderabad ↔ Uppal</span><span class="rp-pct">54%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:54%"></div></div>
+          </div>
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">Dilsukhnagar ↔ LB Nagar</span><span class="rp-pct">41%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:41%"></div></div>
+          </div>
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">Banjara Hills ↔ Jubilee Hills</span><span class="rp-pct">29%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:29%"></div></div>
+          </div>
+          <div class="rp-item">
+            <div class="rp-top"><span class="rp-name">HYD → Vijayawada (Outstation)</span><span class="rp-pct">18%</span></div>
+            <div class="rp-bar"><div class="rp-fill" style="width:18%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alerts -->
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div><h3>Alerts &amp; Notifications</h3><p>5 unread items</p></div>
+          <button class="tbl-btn" onclick="showToast('Marking all as read…')">Mark all read</button>
+        </div>
+        <div class="alert-list">
+          <div class="alert-item">
+            <div class="alert-ico" style="background:var(--red-l);color:var(--red)"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="alert-txt">
+              <span class="at">Vehicle TS09EF4521 — Maintenance Due</span>
+              <span class="as">Engine service overdue by 2 days</span>
+            </div>
+            <span class="alert-time">2m ago</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-ico" style="background:var(--yellow-l);color:var(--yellow)"><i class="fas fa-clock"></i></div>
+            <div class="alert-txt">
+              <span class="at">Driver Anil Varma — Shift Late</span>
+              <span class="as">Expected 08:00, reported at 08:45</span>
+            </div>
+            <span class="alert-time">1h ago</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-ico" style="background:var(--blue-l);color:var(--blue)"><i class="fas fa-building"></i></div>
+            <div class="alert-txt">
+              <span class="at">New Corporate Enquiry — Capgemini</span>
+              <span class="as">150 employees, daily transport required</span>
+            </div>
+            <span class="alert-time">3h ago</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-ico" style="background:var(--green-l);color:var(--green)"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div class="alert-txt">
+              <span class="at">Invoice #INV-2459 Paid — Infosys BPM</span>
+              <span class="as">₹3,82,500 received for May 2026</span>
+            </div>
+            <span class="alert-time">5h ago</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-ico" style="background:var(--purple-l);color:var(--purple)"><i class="fas fa-star"></i></div>
+            <div class="alert-txt">
+              <span class="at">New 5★ Review — WNS Global</span>
+              <span class="as">"Best corporate transport partner in Hyderabad"</span>
+            </div>
+            <span class="alert-time">8h ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP CLIENTS TABLE -->
+    <div class="table-card" style="margin-bottom:22px">
+      <div class="tcard-hdr" style="padding-bottom:14px">
+        <div>
+          <h3>Top Corporate Clients</h3>
+          <p>Ranked by monthly revenue contribution</p>
+        </div>
+        <div class="tcard-actions">
+          <button class="tbl-btn" onclick="showToast('Exporting client data…')"><i class="fas fa-download"></i> Export</button>
+          <button class="tbl-btn primary" onclick="showToast('Opening add client form…')"><i class="fas fa-plus"></i> Add Client</button>
+        </div>
+      </div>
+      <div class="table-wrap" style="margin-top:0">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Industry</th>
+              <th>Employees</th>
+              <th>Vehicles</th>
+              <th>Monthly Revenue</th>
+              <th>Contract Until</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="td-bold">Infosys BPM</div><div style="font-size:11px;color:var(--muted)">HITEC City, HYD</div></td>
+              <td>IT / BPO</td>
+              <td>412</td>
+              <td>18</td>
+              <td style="font-weight:700;color:var(--green)">₹3,82,500</td>
+              <td>Mar 2027</td>
+              <td><span class="status-pill sp-active">Active</span></td>
+              <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="td-bold">WNS Global Services</div><div style="font-size:11px;color:var(--muted)">Madhapur, HYD</div></td>
+              <td>BPO</td>
+              <td>634</td>
+              <td>24</td>
+              <td style="font-weight:700;color:var(--green)">₹5,14,000</td>
+              <td>Dec 2026</td>
+              <td><span class="status-pill sp-active">Active</span></td>
+              <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="td-bold">Deloitte India</div><div style="font-size:11px;color:var(--muted)">Gachibowli, HYD</div></td>
+              <td>Consulting</td>
+              <td>89</td>
+              <td>6</td>
+              <td style="font-weight:700;color:var(--green)">₹1,24,000</td>
+              <td>Jun 2027</td>
+              <td><span class="status-pill sp-active">Active</span></td>
+              <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="td-bold">Tech Mahindra</div><div style="font-size:11px;color:var(--muted)">Kondapur, HYD</div></td>
+              <td>IT Services</td>
+              <td>276</td>
+              <td>12</td>
+              <td style="font-weight:700;color:var(--green)">₹2,28,000</td>
+              <td>Sep 2026</td>
+              <td><span class="status-pill sp-pending">Renewal Due</span></td>
+              <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="td-bold">Accenture HYD</div><div style="font-size:11px;color:var(--muted)">Nanakramguda, HYD</div></td>
+              <td>IT / Consulting</td>
+              <td>188</td>
+              <td>9</td>
+              <td style="font-weight:700;color:var(--green)">₹1,71,000</td>
+              <td>Feb 2027</td>
+              <td><span class="status-pill sp-active">Active</span></td>
+              <td><button class="tbl-btn" style="padding:5px 10px;font-size:11px" onclick="showToast('Opening client profile…')"><i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- ════════════════════════════════════════
+     NEW BOOKING MODAL
+════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h3><i class="fas fa-plus" style="color:var(--yellow);margin-right:8px"></i>New Booking</h3>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <form id="bookingForm" onsubmit="submitBooking(event)">
+      <div class="f2">
+        <div class="fg">
+          <label>Corporate Client</label>
+          <select>
+            <option>Infosys BPM</option>
+            <option>WNS Global Services</option>
+            <option>Deloitte India</option>
+            <option>Tech Mahindra</option>
+            <option>Accenture HYD</option>
+            <option>Other / Walk-in</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Service Type</label>
+          <select>
+            <option>Employee Shift Transport</option>
+            <option>Executive Cab</option>
+            <option>Airport Pickup</option>
+            <option>Airport Drop</option>
+            <option>Outstation</option>
+            <option>Event Transport</option>
+          </select>
+        </div>
+      </div>
+      <div class="f2">
+        <div class="fg">
+          <label>Pickup Location</label>
+          <input type="text" placeholder="e.g., Gachibowli, HYD" required />
+        </div>
+        <div class="fg">
+          <label>Drop Location</label>
+          <input type="text" placeholder="e.g., HITEC City, HYD" required />
+        </div>
+      </div>
+      <div class="f2">
+        <div class="fg">
+          <label>Pickup Date &amp; Time</label>
+          <input type="datetime-local" required />
+        </div>
+        <div class="fg">
+          <label>Assign Vehicle</label>
+          <select>
+            <option>TS09EF4521 — Swift DZire</option>
+            <option>TS10KL7744 — Innova Crysta</option>
+            <option>TS07MN1102 — Mini Bus</option>
+            <option>TS08UV3310 — Innova Crysta</option>
+            <option>TS12AB9933 — Tempo Traveller</option>
+            <option>TS05GH6622 — Full Bus</option>
+          </select>
+        </div>
+      </div>
+      <div class="f2">
+        <div class="fg">
+          <label>Assign Driver</label>
+          <select>
+            <option>Ramesh Kumar (Available)</option>
+            <option>Venkat Rao (Available)</option>
+            <option>Suresh Prasad (Available)</option>
+            <option>Kiran Mehta (Available)</option>
+            <option>Naresh Babu (Available)</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>No. of Passengers</label>
+          <input type="number" min="1" max="55" placeholder="e.g., 4" required />
+        </div>
+      </div>
+      <div class="fg">
+        <label>Notes (optional)</label>
+        <textarea rows="2" placeholder="Special instructions, luggage, flight number…" style="width:100%;resize:none"></textarea>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn-confirm"><i class="fas fa-check"></i> Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg">Done!</span>
+</div>
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+/* ── THEME ───────────────────────────────── */
+const html   = document.documentElement;
+const tgl    = document.getElementById('themeToggle');
+const tIcon  = document.getElementById('themeIcon');
+const saved  = localStorage.getItem('dsr-admin-theme') || 'dark';
+
+function applyTheme(t) {
+  html.setAttribute('data-theme', t);
+  localStorage.setItem('dsr-admin-theme', t);
+  tgl.classList.toggle('on', t === 'light');
+  tIcon.className = t === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+  updateCharts(t);
+}
+applyTheme(saved);
+tgl.addEventListener('click', () =>
+  applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
+);
+
+/* ── SIDEBAR TOGGLE ─────────────────────── */
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const mn = document.getElementById('main');
+  sb.classList.toggle('open');
+  if (window.innerWidth > 860) {
+    const open = !sb.style.width || sb.style.width === '240px';
+    sb.style.width = open ? '60px' : '240px';
+    mn.style.marginLeft = open ? '60px' : '240px';
+  }
+}
+function setNav(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  showToast(`Navigating to ${el.textContent.trim().split('\n')[0].trim()}…`);
+}
+
+/* ── KPI COUNTERS ───────────────────────── */
+function animateCount(id, target, prefix='', suffix='', duration=1200) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let start = null;
+  const step = ts => {
+    if (!start) start = ts;
+    const prog = Math.min((ts - start) / duration, 1);
+    const val  = Math.floor(prog * target);
+    el.textContent = prefix + val.toLocaleString('en-IN') + suffix;
+    if (prog < 1) requestAnimationFrame(step);
+    else el.textContent = prefix + target.toLocaleString('en-IN') + suffix;
+  };
+  requestAnimationFrame(step);
+}
+setTimeout(() => {
+  animateCount('kTrips',   148);
+  animateCount('kVehicles', 62);
+  animateCount('kClients', 214);
+  animateCount('kRevenue', 1824600, '₹');
+}, 300);
+
+/* ── CHART.JS SETUP ─────────────────────── */
+const COLORS = {
+  yellow: '#FFC300', yellowAlpha: 'rgba(255,195,0,0.18)',
+  green:  '#22c55e', blue: '#3b82f6', purple: '#a855f7', red: '#ef4444',
+};
+
+/* Trip Chart */
+const tripData = {
+  week: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    data:   [112, 134, 128, 141, 156, 67, 42]
+  },
+  month: {
+    labels: ['W1', 'W2', 'W3', 'W4'],
+    data:   [820, 944, 1012, 1148]
+  },
+  year: {
+    labels: ['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'],
+    data:   [3100,3240,3190,3450,3600,2980,3740,3820,3650,4010,4240,4380]
+  }
+};
+let activeRange = 'week';
+
+const tripCtx = document.getElementById('tripChart').getContext('2d');
+const tripChart = new Chart(tripCtx, {
+  type: 'bar',
+  data: {
+    labels: tripData.week.labels,
+    datasets: [{
+      label: 'Trips',
+      data: tripData.week.data,
+      backgroundColor: 'rgba(255,195,0,0.22)',
+      borderColor: '#FFC300',
+      borderWidth: 2,
+      borderRadius: 7,
+      borderSkipped: false,
+    },{
+      label: 'Target',
+      data: tripData.week.data.map(d => d * 1.1),
+      type: 'line',
+      borderColor: 'rgba(59,130,246,0.6)',
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      borderDash: [5,5],
+      pointRadius: 3,
+      pointBackgroundColor: '#3b82f6',
+      tension: 0.4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1e1e1e',
+        titleColor: '#FFC300',
+        bodyColor: '#aaaaaa',
+        borderColor: '#252525',
+        borderWidth: 1,
+        padding: 10,
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#666', font: { family:'Poppins', size:11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#666', font: { family:'Poppins', size:11 } }, beginAtZero: true }
+    }
+  }
+});
+
+function switchChart(btn, range) {
+  document.querySelectorAll('.ctab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeRange = range;
+  tripChart.data.labels = tripData[range].labels;
+  tripChart.data.datasets[0].data = tripData[range].data;
+  tripChart.data.datasets[1].data = tripData[range].data.map(d => d * 1.1);
+  tripChart.update();
+}
+
+/* Revenue Doughnut */
+const revCtx = document.getElementById('revenueChart').getContext('2d');
+const revChart = new Chart(revCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Employee Transport', 'Executive Cabs', 'Airport Transfers', 'Outstation'],
+    datasets:[{
+      data: [52, 22, 14, 12],
+      backgroundColor: ['#FFC300','#3b82f6','#22c55e','#a855f7'],
+      borderWidth: 0,
+      hoverOffset: 10,
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '68%',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1e1e1e',
+        titleColor: '#FFC300',
+        bodyColor: '#aaa',
+        borderColor: '#252525',
+        borderWidth: 1,
+        padding: 10,
+        callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` }
+      }
+    }
+  }
+});
+
+function updateCharts(theme) {
+  const gridColor = theme === 'dark' ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)';
+  const tickColor = theme === 'dark' ? '#555' : '#aaa';
+  if (tripChart) {
+    tripChart.options.scales.x.ticks.color = tickColor;
+    tripChart.options.scales.y.ticks.color = tickColor;
+    tripChart.options.scales.y.grid.color  = gridColor;
+    tripChart.update();
+  }
+}
+
+/* ── MODAL ──────────────────────────────── */
+function openModal()  { document.getElementById('modalOverlay').classList.add('open'); }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function handleOverlayClick(e) { if (e.target === e.currentTarget) closeModal(); }
+function submitBooking(e) {
+  e.preventDefault();
+  closeModal();
+  showToast('Booking confirmed and driver notified!');
+  e.target.reset();
+}
+
+/* ── TOAST ──────────────────────────────── */
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>
