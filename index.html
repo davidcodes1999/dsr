@@ -339,6 +339,46 @@
     .astat .l { font-size:12px; color:rgba(255,255,255,.5); }
 
     /* ═══════════════════════════════════════════
+       VALUE PILLARS BAND
+    ═══════════════════════════════════════════ */
+    .pillars-band { background:var(--yellow); padding:40px 24px; }
+    .pillars-inner {
+      max-width:1300px; margin:0 auto;
+      display:grid; grid-template-columns:repeat(5,1fr); gap:16px;
+    }
+    .pillar {
+      display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+    }
+    .pillar-ico {
+      width:52px; height:52px; background:rgba(0,0,0,.10); border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; color:#000;
+    }
+    .pillar h3 { font-size:13px; font-weight:800; color:#000; line-height:1.3; }
+    @media(max-width:860px) { .pillars-inner { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:540px) { .pillars-inner { grid-template-columns:repeat(2,1fr); } }
+
+    /* ═══════════════════════════════════════════
+       DRIVER QUALITY SECTION
+    ═══════════════════════════════════════════ */
+    .driver-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; }
+    .driver-card {
+      background:var(--card); border:1px solid var(--border); border-radius:14px;
+      padding:20px 18px;
+      transition:transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .driver-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-h); border-color:var(--yellow); }
+    .drv-ico {
+      width:46px; height:46px; background:var(--yellow-l); border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:20px; color:var(--yellow); margin-bottom:12px;
+      transition:background .3s, color .3s;
+    }
+    .driver-card:hover .drv-ico { background:var(--yellow); color:#000; }
+    .driver-card h3 { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:5px; }
+    .driver-card p  { font-size:12.5px; color:var(--muted); line-height:1.65; }
+
+    /* ═══════════════════════════════════════════
        SOLUTIONS GRID
     ═══════════════════════════════════════════ */
     .sol-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:22px; }
@@ -901,6 +941,34 @@
 </div>
 
 <!-- ════════════════════════════════════════════
+     VALUE PILLARS (Page 4 of Presentation)
+════════════════════════════════════════════ -->
+<div class="pillars-band">
+  <div class="pillars-inner">
+    <div class="pillar fi d1">
+      <div class="pillar-ico"><i class="fas fa-bullseye"></i></div>
+      <h3>Dedicated Site Operation Team</h3>
+    </div>
+    <div class="pillar fi d2">
+      <div class="pillar-ico"><i class="fas fa-shield-halved"></i></div>
+      <h3>Safety For All</h3>
+    </div>
+    <div class="pillar fi d3">
+      <div class="pillar-ico"><i class="fas fa-route"></i></div>
+      <h3>End to End Transport Management</h3>
+    </div>
+    <div class="pillar fi d4">
+      <div class="pillar-ico"><i class="fas fa-clock-rotate-left"></i></div>
+      <h3>Round the Clock Operations</h3>
+    </div>
+    <div class="pillar fi d5">
+      <div class="pillar-ico"><i class="fas fa-handshake"></i></div>
+      <h3>Organization Friendly</h3>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
      CORPORATE SOLUTIONS
 ════════════════════════════════════════════ -->
 <section class="section alt" id="solutions">
@@ -925,8 +993,8 @@
       </div>
       <div class="sol-card fi d3">
         <div class="sol-ico"><i class="fas fa-map-pin"></i></div>
-        <h3>Nodal &amp; Fixed Route Services</h3>
-        <p>Pickup &amp; drop within 1–1.5 km radius of nodal points. Travel time for 50 km radius approximately 90 minutes. Fixed route services at stipulated points at pre-fixed schedules across your city zones.</p>
+        <h3>Nodal, Home &amp; Fixed Route</h3>
+        <p><strong>Nodal:</strong> Pickup within 1–1.5 km radius (90 min for 50 km). <strong>Home pickup:</strong> Door-step pickup &amp; drop, travel time defined by vehicle type. <strong>Fixed route:</strong> Stipulated points at pre-fixed schedules.</p>
         <a href="#contact" class="sol-link">Plan Routes <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="sol-card fi d4">
@@ -1230,38 +1298,38 @@
     <div class="sec-hdr fi">
       <div class="sec-tag"><i class="fas fa-trophy"></i>&nbsp; Our Advantage</div>
       <h2 class="sec-title">Why Companies <span>Choose DSR Groups</span></h2>
-      <p class="sec-desc">Not just a cab service — a complete corporate transport management partner built for operational excellence and compliance.</p>
+      <p class="sec-desc">The most prominent transport service provider with unparalleled professionalism and value — our expertise has helped us gain the trust of many customers.</p>
     </div>
     <div class="why-grid">
       <div class="why-card fi d1">
         <div class="why-ico"><i class="fas fa-file-invoice-dollar"></i></div>
         <h3>GST-Compliant Billing</h3>
-        <p>Proper GST invoices every month for clean accounting and easy employee reimbursements.</p>
+        <p>Competitive rates and transparent pricing with no hidden fees. Proper GST invoices every month for clean accounting.</p>
       </div>
       <div class="why-card fi d2">
         <div class="why-ico"><i class="fas fa-user-cog"></i></div>
         <h3>Dedicated Account Manager</h3>
-        <p>Single point of contact for all changes, escalations and reporting needs — always reachable.</p>
+        <p>Single point of contact for all changes, escalations and reporting needs. Customized services tailored to your specific requirements.</p>
       </div>
       <div class="why-card fi d3">
         <div class="why-ico"><i class="fas fa-satellite-dish"></i></div>
         <h3>GPS &amp; IVMS Tracking</h3>
-        <p>Vehicle live tracking, AVL location services, health metric reporting and accident detection on every trip.</p>
+        <p>Vehicle live tracking, AVL location services, health metric reporting and accident detection with reconstruction on every trip.</p>
       </div>
       <div class="why-card fi d4">
-        <div class="why-ico"><i class="fas fa-shield-alt"></i></div>
-        <h3>100% Verified Drivers</h3>
-        <p>Police-verified, background-checked drivers with quarterly medical health checks and training programs.</p>
+        <div class="why-ico"><i class="fas fa-bus"></i></div>
+        <h3>Comfortable &amp; Spacious Fleet</h3>
+        <p>Well-maintained buses equipped with comfortable seating and ample space — ensuring a pleasant journey for your staff every day.</p>
       </div>
       <div class="why-card fi d5">
-        <div class="why-ico"><i class="fas fa-camera"></i></div>
-        <h3>Safety-First Technology</h3>
-        <p>CCTV live viewing, panic buttons, smoke detectors, rear-view cameras and seatbelts on all vehicles.</p>
+        <div class="why-ico"><i class="fas fa-calendar-days"></i></div>
+        <h3>Flexible Scheduling</h3>
+        <p>Daily commutes, corporate events or off-site meetings — flexible scheduling options to meet your specific timing needs.</p>
       </div>
       <div class="why-card fi d6">
         <div class="why-ico"><i class="fas fa-headset"></i></div>
         <h3>24/7 Emergency Support</h3>
-        <p>Round-the-clock helpline for mid-trip breakdowns, driver no-shows and urgent rerouting.</p>
+        <p>Round-the-clock helpline for mid-trip breakdowns, driver no-shows and urgent rerouting. Fully trained staff 24/7.</p>
       </div>
     </div>
   </div>
@@ -1317,6 +1385,92 @@
         <div class="tech-ico"><i class="fas fa-smoke-detector"></i></div>
         <h3>Safety Sensors</h3>
         <p>Smoke detectors and rear-view cameras installed in all vehicles to prevent fire hazards and eliminate blind-spot accidents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     DRIVER QUALITY (Page 11 of Presentation)
+════════════════════════════════════════════ -->
+<section class="section alt" id="drivers">
+  <div class="sec-inner">
+    <div class="sec-hdr fi">
+      <div class="sec-tag"><i class="fas fa-id-badge"></i>&nbsp; Driver Quality</div>
+      <h2 class="sec-title">Highly Trained &amp; <span>Verified Drivers</span></h2>
+      <p class="sec-desc">DSR Groups onboards highly competent, aptly trained and efficient drivers through a rigorous multi-step recruitment policy ensuring quality and safety at every trip.</p>
+    </div>
+    <div class="driver-grid">
+      <div class="driver-card fi d1">
+        <div class="drv-ico"><i class="fas fa-user-check"></i></div>
+        <h3>Hiring — Experienced Professionals</h3>
+        <p>Experienced and professional industry experts absorbed into the company with thorough background checks for a clear track record before onboarding.</p>
+      </div>
+      <div class="driver-card fi d2">
+        <div class="drv-ico"><i class="fas fa-house-chimney-user"></i></div>
+        <h3>BGV — Background Verification</h3>
+        <p>Physical inspection of address as specified on Government ID cards through an external third-party agency for every driver on the ground team.</p>
+      </div>
+      <div class="driver-card fi d3">
+        <div class="drv-ico"><i class="fas fa-shield-halved"></i></div>
+        <h3>Police Verification</h3>
+        <p>Police verification filed online for every driver. One copy of the police verification certificate is submitted to all customers for transparency.</p>
+      </div>
+      <div class="driver-card fi d4">
+        <div class="drv-ico"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Training &amp; Induction</h3>
+        <p>Ground team undergoes induction covering company introduction, document verification and license submission. Quarterly training programs held to empower drivers.</p>
+      </div>
+      <div class="driver-card fi d5">
+        <div class="drv-ico"><i class="fas fa-heartbeat"></i></div>
+        <h3>Medical Health Checks</h3>
+        <p>Drivers undergo Eye Site, Audiometric, Blood Pressure, Sugar and ECG checks every 3 months to ensure fitness and safety on every trip.</p>
+      </div>
+      <div class="driver-card fi d6">
+        <div class="drv-ico"><i class="fas fa-trophy"></i></div>
+        <h3>Rewards &amp; Recognition</h3>
+        <p>Quarterly R&amp;R programs conducted to reenergize the ground teams, ensure driver satisfaction, and keep attrition levels controlled.</p>
+      </div>
+    </div>
+
+    <!-- Compliance sub-section (Page 8) -->
+    <div style="margin-top:52px">
+      <div class="sec-hdr fi" style="margin-bottom:30px">
+        <div class="sec-tag"><i class="fas fa-clipboard-check"></i>&nbsp; Compliance</div>
+        <h2 class="sec-title">Full <span>Regulatory Compliance</span></h2>
+        <p class="sec-desc">We follow all HR policies, environmental policies, safety policies and business ethics, maintaining books of accounts and vehicle/driver documents on a regular basis.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fi d1">
+          <div class="why-ico"><i class="fas fa-file-shield"></i></div>
+          <h3>Policy Compliance</h3>
+          <p>Following all HR Policies, Environmental Policies, Safety Policies and business ethics — zero compromise.</p>
+        </div>
+        <div class="why-card fi d2">
+          <div class="why-ico"><i class="fas fa-book-open"></i></div>
+          <h3>Books of Accounts</h3>
+          <p>Maintaining books of accounts on a regular basis. GST-compliant billing and complete financial transparency with all clients.</p>
+        </div>
+        <div class="why-card fi d3">
+          <div class="why-ico"><i class="fas fa-car-burst"></i></div>
+          <h3>Vehicle &amp; Driver Docs</h3>
+          <p>Monitoring all vehicle and driver compliances. Periodical renewal of vehicle/driver documents done timely without fail.</p>
+        </div>
+        <div class="why-card fi d4">
+          <div class="why-ico"><i class="fas fa-screwdriver-wrench"></i></div>
+          <h3>OEM-Only Maintenance</h3>
+          <p>Service schedules and preventive maintenance done exclusively at OEM garages. General check-up and vehicle cleanliness performed regularly.</p>
+        </div>
+        <div class="why-card fi d5">
+          <div class="why-ico"><i class="fas fa-chart-line"></i></div>
+          <h3>SLA &amp; SOW Compliance</h3>
+          <p>Complied to meet the SLAs and SOWs of each client. Periodical checks and measures monitored by a well-trained team.</p>
+        </div>
+        <div class="why-card fi d6">
+          <div class="why-ico"><i class="fas fa-broom"></i></div>
+          <h3>Vehicle Cleanliness</h3>
+          <p>Regular general check-up and cleanliness of all vehicles maintained. 24/7 trained staff available to handle any breakdowns.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1625,6 +1779,7 @@
           <li><a href="#solutions">Solutions</a></li>
           <li><a href="#fleet">Our Fleet</a></li>
           <li><a href="#technology">Technology</a></li>
+          <li><a href="#drivers">Driver Quality</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
